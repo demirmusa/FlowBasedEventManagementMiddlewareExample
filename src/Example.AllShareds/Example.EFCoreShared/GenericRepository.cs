@@ -37,7 +37,7 @@ namespace Example.EFCoreShared
         }
         public virtual TEntity Delete(int id)
         {
-            var entity = _context.Set<TEntity>().Find(id);
+            var entity = DbSet.Find(id);
             if (entity == null)
                 return null;
 
@@ -88,7 +88,7 @@ namespace Example.EFCoreShared
             //if its ISoftUpdatable , get deep copy of entity and insert it as a soft deleted with FKPreviousVersionID=entity.ID 
             if (typeof(ISoftUpdatable).IsAssignableFrom(typeof(TEntity)))
             {
-                var dbResult = _context.Set<TEntity>().AsNoTracking().FirstOrDefault(x => x.ID == (entity as ISoftUpdatable).ID);
+                var dbResult = DbSet.AsNoTracking().FirstOrDefault(x => x.ID == (entity as ISoftUpdatable).ID);
                 if (dbResult == null)
                     throw new ArgumentNullException("ISoftUpdatable object is in db null!");
 
