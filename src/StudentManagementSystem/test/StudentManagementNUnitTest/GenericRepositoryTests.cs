@@ -3,6 +3,7 @@ using Example.EFCoreShared.interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
+using StudentManagementSystem.Business;
 using StudentManagementSystem.Data;
 using StudentManagementSystem.Data.dbEntities;
 using System;
@@ -14,21 +15,26 @@ namespace Tests
     {
         IGenericRepository<SMSDbContext, Person> _personRepo;
         IGenericRepository<SMSDbContext, StudentCourseScore> _studentCourseScoreRepo;
+
+        IMyGenericRepository<Person> _personMyRepo;
         [SetUp]
         public void Setup()
         {
             var services = new ServiceCollection();
 
             services.AddDbContext<SMSDbContext>(options =>
-                options.UseSqlServer("Data Source=LAPTOP-3O58F4FN;database=studentManagement;trusted_connection=yes;"));
+                options.UseSqlServer("Data Source=LAPTOP-3O58F4FN;database=studentManagement_test;trusted_connection=yes;"));
 
+            services.AddGenericRepositoryScoped();
 
-            services.AddGenericRepositorySingleton();
+            services.AddScoped(typeof(IMyGenericRepository<>), typeof(MyGenericRepository<>));
 
             var provider = services.BuildServiceProvider();
 
-            _personRepo = provider.GetService<IGenericRepository<SMSDbContext, Person>>();
+             _personRepo = provider.GetService<IGenericRepository<SMSDbContext, Person>>();
             _studentCourseScoreRepo = provider.GetService<IGenericRepository<SMSDbContext, StudentCourseScore>>();
+
+            _personMyRepo = provider.GetService<IMyGenericRepository<Person>>();
         }
 
         [Test]
@@ -145,6 +151,19 @@ namespace Tests
 
                 score.FKStudentID = 99;
                 _studentCourseScoreRepo.AddOrUpdate(score);
+            }
+            catch (Exception e)
+            {
+                Assert.That(false, "Error: " + e.Message);
+            }
+            Assert.Pass();
+        }
+        [Test]
+        public void MyRepoTest()
+        {
+            try
+            {
+                var list = _personMyRepo.AsQueryable().ToList();
             }
             catch (Exception e)
             {
