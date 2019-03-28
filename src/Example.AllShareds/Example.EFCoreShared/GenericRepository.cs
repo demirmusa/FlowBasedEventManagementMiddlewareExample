@@ -90,7 +90,7 @@ namespace Example.EFCoreShared
             {
                 var dbResult = DbSet.AsNoTracking().FirstOrDefault(x => x.ID == (entity as ISoftUpdatable).ID);
                 if (dbResult == null)
-                    throw new ArgumentNullException("ISoftUpdatable object is in db null!");
+                    throw new ArgumentNullException($"There is no object in db whose ID is {(entity as ISoftUpdatable).ID}. Check your object's ID");
 
 
                 (dbResult as ISoftUpdatable).ID = 0;
