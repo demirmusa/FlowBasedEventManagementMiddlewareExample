@@ -11,8 +11,21 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\StudentManagementSystem.Data\StudentManagementSystem.Data.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Reference Include="Example.EFCoreShared">
+      <HintPath>..\..\..\Example.AllShareds\Example.EFCoreShared\bin\Release\netstandard2.0\Example.EFCoreShared.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
