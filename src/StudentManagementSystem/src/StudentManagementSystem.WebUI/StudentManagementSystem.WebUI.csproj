@@ -18,11 +18,15 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\StudentManagementSystem.Business\StudentManagementSystem.Business.csproj" />
     <ProjectReference Include="..\StudentManagementSystem.Data\StudentManagementSystem.Data.csproj" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <Reference Include="Example.CoreShareds">
+      <HintPath>..\..\..\Example.AllShareds\Example.CoreShareds\bin\Release\netstandard2.0\Example.CoreShareds.dll</HintPath>
+    </Reference>
     <Reference Include="Example.EFCoreShared">
       <HintPath>..\..\..\Example.AllShareds\Example.EFCoreShared\bin\Release\netstandard2.0\Example.EFCoreShared.dll</HintPath>
     </Reference>

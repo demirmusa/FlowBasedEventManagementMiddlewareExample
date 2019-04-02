@@ -40,6 +40,17 @@ namespace StudentManagementSystem.WebUI
 
             services.AddGenericRepositorySingleton();
 
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+                // Make the session cookie essential
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -59,6 +70,8 @@ namespace StudentManagementSystem.WebUI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
+
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
