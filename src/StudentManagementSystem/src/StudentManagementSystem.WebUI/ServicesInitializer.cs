@@ -15,7 +15,7 @@ namespace StudentManagementSystem.WebUI
             services.AddGenericRepositorySingleton();
 
             services.AddScoped(typeof(ISMSDbContextGenericRepository<>), typeof(SMSDbContextGenericRepository<>));
-            services.AddTransient<Business.StudentSearch.interfaces.IStudentSearchBL, Business.StudentSearch.StudentSearchBL>();
+            services.AddTransient<Business.StudentSearch.interfaces.IStudentSearchService, Business.StudentSearch.StudentSearchService>();
         }
 
         public static void AutoMapperInitizer(IMapper mapper)

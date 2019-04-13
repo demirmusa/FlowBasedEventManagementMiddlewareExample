@@ -12,10 +12,10 @@ namespace StudentManagementSystem.WebUI.Controllers
 {
     public class HomeController : SMSBaseController
     {
-        IStudentSearchBL _studentSearchBL;
-        public HomeController(IStudentSearchBL studentSearchBL)
+        IStudentSearchService _studentSearchService;
+        public HomeController(IStudentSearchService studentSearchService)
         {
-            _studentSearchBL = studentSearchBL;
+            _studentSearchService = studentSearchService;
         }
 
         public IActionResult Index()
@@ -25,13 +25,13 @@ namespace StudentManagementSystem.WebUI.Controllers
 
         public async Task<GenericResult<List<(int id, string name,string foto)>>> Search(string query)
         {
-            var searchResult = await _studentSearchBL.SearchStudent(query);
+            var searchResult = await _studentSearchService.SearchStudent(query);
 
             return searchResult.GetUserSafeResult();
         }
         public async Task<GenericResult<bool>> SelectStudent(int id)
         {
-            var searchResult = await _studentSearchBL.GetStudentInformationById(id);
+            var searchResult = await _studentSearchService.GetStudentInformationById(id);
             if (searchResult.IsSucceed)
                 return GenericResult<bool>.Success(true);
             else

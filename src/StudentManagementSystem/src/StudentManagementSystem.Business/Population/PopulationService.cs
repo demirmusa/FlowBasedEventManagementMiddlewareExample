@@ -2,6 +2,7 @@
 using Example.CoreShareds;
 using Microsoft.EntityFrameworkCore;
 using StudentManagementSystem.Business.Population.Dto;
+using StudentManagementSystem.Business.Population.Interfaces;
 using StudentManagementSystem.Data.DbEntities;
 using System;
 using System.Linq;
@@ -9,26 +10,25 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem.Business.Population
 {
-    public class PopulationBL
+    public class PopulationService : IPopulationService
     {
         ISMSDbContextGenericRepository<PopulationInformation> _populationRepo;
         private IMapper _mapper;
-        public PopulationBL(ISMSDbContextGenericRepository<PopulationInformation> populationRepo, IMapper mapper)
+        public PopulationService(ISMSDbContextGenericRepository<PopulationInformation> populationRepo, IMapper mapper)
         {
             _populationRepo = populationRepo;
             _mapper = mapper;
         }
-        public async Task<GenericResult<bool>> AddPopulationInfo(PopulationInformationDto informationDto)
+        public async Task<GenericResult<PopulationInformationDto>> AddPopulationInfo(PopulationInformationDto informationDto)
         {
             try
             {
-                await _populationRepo.InsertAsync(_mapper.Map<PopulationInformation>(informationDto));
-                return GenericResult<bool>.Success(true);
+                var newPopulation = await _populationRepo.InsertAsync(_mapper.Map<PopulationInformation>(informationDto));
+                return GenericResult<PopulationInformationDto>.Success(_mapper.Map<PopulationInformationDto>(newPopulation));
             }
             catch (Exception e)
             {
-                return GenericResult<bool>.Error(e);
-
+                return GenericResult<PopulationInformationDto>.Error(e);
             }
         }
         public async Task<bool> IsPopulationExists(int id) =>

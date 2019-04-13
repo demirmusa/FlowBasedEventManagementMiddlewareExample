@@ -10,22 +10,22 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem.Business.People
 {
-    public class PeopleBL : IPeopleBL
+    public class PeopleService : IPeopleService
     {
         ISMSDbContextGenericRepository<Person> _personRepo;
-        IPopulationBL _populationBL;
+        IPopulationService _populationService;
         IMapper _mapper;
-        public PeopleBL(ISMSDbContextGenericRepository<Person> personRepo, IPopulationBL populationBL, IMapper mapper)
+        public PeopleService(ISMSDbContextGenericRepository<Person> personRepo, IPopulationService populationService, IMapper mapper)
         {
             _mapper = mapper;
             _personRepo = personRepo;
-            _populationBL = populationBL;
+            _populationService = populationService;
         }
         public async Task<GenericResult<bool>> AddPerson(PersonDto personDto)
         {
             try
             {
-                if (personDto.FKPopulationInformationID.HasValue && !await _populationBL.IsPopulationExists(personDto.FKPopulationInformationID.Value))
+                if (personDto.FKPopulationInformationID.HasValue && !await _populationService.IsPopulationExists(personDto.FKPopulationInformationID.Value))
                     return GenericResult<bool>.UserSafeError("There is no population info with given id");
 
                 await _personRepo.InsertAsync(_mapper.Map<Person>(personDto));

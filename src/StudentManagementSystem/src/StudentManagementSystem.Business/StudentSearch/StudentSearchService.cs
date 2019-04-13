@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem.Business.StudentSearch
 {
-    public class StudentSearchBL : IStudentSearchBL
+    public class StudentSearchService : IStudentSearchService
     {
         ISMSDbContextGenericRepository<StudentInformation> _studentInformationRepo;
-        public StudentSearchBL(ISMSDbContextGenericRepository<StudentInformation> studentInformationRepo)
+        public StudentSearchService(ISMSDbContextGenericRepository<StudentInformation> studentInformationRepo)
         {
             _studentInformationRepo = studentInformationRepo;
         }

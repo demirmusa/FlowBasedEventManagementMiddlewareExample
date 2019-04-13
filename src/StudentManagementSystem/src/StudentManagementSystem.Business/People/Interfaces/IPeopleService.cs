@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem.Business.People.Interfaces
 {
-    public interface IPeopleBL
+    public interface IPeopleService
     {
         Task<GenericResult<bool>> AddPerson(PersonDto personDto);
         Task<bool> IsPersonExists(int id);

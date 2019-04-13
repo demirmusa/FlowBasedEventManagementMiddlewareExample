@@ -21,9 +21,4 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="User\Dto\" />
-    <Folder Include="User\Interface\" />
-  </ItemGroup>
-
 </Project>

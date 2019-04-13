@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem.Business.Population.Interfaces
 {
-    public interface IPopulationBL
+    public interface IPopulationService
     {
-        Task<GenericResult<bool>> AddPopulationInfo(PopulationInformationDto informationDto);
+        Task<GenericResult<PopulationInformationDto>> AddPopulationInfo(PopulationInformationDto informationDto);
         Task<bool> IsPopulationExists(int id);
     }
 }
