@@ -1,10 +1,10 @@
-﻿using Example.EFCoreShared;
+﻿using EFCore.GenericRepository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace StudentManagementSystem.Data.dbEntities
+namespace StudentManagementSystem.Data.DbEntities
 {
     public class StudentCourseScore : SoftUpdatableDbEntity
     {

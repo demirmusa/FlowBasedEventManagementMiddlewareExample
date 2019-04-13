@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Example.EFCoreShared">
-      <HintPath>..\..\..\Example.AllShareds\Example.EFCoreShared\bin\Release\netstandard2.0\Example.EFCoreShared.dll</HintPath>
+    <Reference Include="EFCore.GenericRepository">
+      <HintPath>..\..\..\..\..\EFCoreGenericRepository\src\EFCore.GenericRepository\bin\Release\netstandard2.0\EFCore.GenericRepository.dll</HintPath>
     </Reference>
   </ItemGroup>
 

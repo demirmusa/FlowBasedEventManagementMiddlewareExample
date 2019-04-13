@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Example.EFCoreShared;
+using EFCore.GenericRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 using StudentManagementSystem.Data;
 
 namespace StudentManagementSystem.WebUI
@@ -38,7 +39,6 @@ namespace StudentManagementSystem.WebUI
                 options.UseSqlServer(Configuration.GetConnectionString("StudentManagementSystemDefaultConnection")));
 
 
-            services.AddGenericRepositorySingleton();
 
             services.AddDistributedMemoryCache();
 
@@ -51,7 +51,10 @@ namespace StudentManagementSystem.WebUI
                 options.Cookie.IsEssential = true;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            ServicesInitializer.InitializeServices(services);
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                    .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,6 +82,9 @@ namespace StudentManagementSystem.WebUI
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area}/{controller}/{action=Index}/{id?}");
             });
         }
     }

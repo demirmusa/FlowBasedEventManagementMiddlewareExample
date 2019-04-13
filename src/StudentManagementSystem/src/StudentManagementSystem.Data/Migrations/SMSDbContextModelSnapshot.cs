@@ -19,7 +19,7 @@ namespace StudentManagementSystem.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.CourseInformation", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.CourseInformation", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -46,7 +46,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("CourseInformations");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.Person", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.Person", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -62,6 +62,8 @@ namespace StudentManagementSystem.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("PhotoUrl");
+
                     b.Property<string>("Surname");
 
                     b.HasKey("ID");
@@ -71,7 +73,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("Persons");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.PopulationInformation", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.PopulationInformation", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -98,7 +100,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("PopulationInformations");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.StudentCourseJunction", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.StudentCourseJunction", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -117,7 +119,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("StudentCourseJunctions");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.StudentCourseScore", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.StudentCourseScore", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -142,7 +144,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("StudentCourseScores");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.StudentInformation", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.StudentInformation", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -171,7 +173,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("StudentInformations");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.Teacher", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.Teacher", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -194,7 +196,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.User", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.User", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -221,40 +223,40 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.CourseInformation", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.CourseInformation", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Data.dbEntities.Teacher", "Teacher")
+                    b.HasOne("StudentManagementSystem.Data.DbEntities.Teacher", "Teacher")
                         .WithMany()
                         .HasForeignKey("FKTeacherID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.Person", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.Person", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Data.dbEntities.PopulationInformation", "PopulationInformation")
+                    b.HasOne("StudentManagementSystem.Data.DbEntities.PopulationInformation", "PopulationInformation")
                         .WithMany()
                         .HasForeignKey("FKPopulationInformationID");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.StudentInformation", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.StudentInformation", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Data.dbEntities.User", "User")
+                    b.HasOne("StudentManagementSystem.Data.DbEntities.User", "User")
                         .WithMany()
                         .HasForeignKey("FKUserID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.Teacher", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.Teacher", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Data.dbEntities.User", "User")
+                    b.HasOne("StudentManagementSystem.Data.DbEntities.User", "User")
                         .WithMany()
                         .HasForeignKey("FKUserID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.dbEntities.User", b =>
+            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.User", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Data.dbEntities.Person", "Person")
+                    b.HasOne("StudentManagementSystem.Data.DbEntities.Person", "Person")
                         .WithMany()
                         .HasForeignKey("FKPersonID")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -1,8 +1,8 @@
 ﻿using Example.CoreShareds;
 using Microsoft.EntityFrameworkCore;
-using StudentManagementSystem.Business.StudentSearch.dto;
+using StudentManagementSystem.Business.StudentSearch.Dto;
 using StudentManagementSystem.Business.StudentSearch.interfaces;
-using StudentManagementSystem.Data.dbEntities;
+using StudentManagementSystem.Data.DbEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +12,12 @@ namespace StudentManagementSystem.Business.StudentSearch
 {
     public class StudentSearchBL : IStudentSearchBL
     {
-        IMyGenericRepository<StudentInformation> _studentInformationRepo;
-        public StudentSearchBL(IMyGenericRepository<StudentInformation> studentInformationRepo)
+        ISMSDbContextGenericRepository<StudentInformation> _studentInformationRepo;
+        public StudentSearchBL(ISMSDbContextGenericRepository<StudentInformation> studentInformationRepo)
         {
             _studentInformationRepo = studentInformationRepo;
         }
-        public async Task<GenericResult<List<(int id, string name)>>> SearchStudent(string query)
+        public async Task<GenericResult<List<(int id, string name, string foto)>>> SearchStudent(string query)
         {
             try
             {
@@ -30,14 +30,14 @@ namespace StudentManagementSystem.Business.StudentSearch
                     )
                     .OrderByDescending(x => x.ID).ThenBy(x => x.StudentNumber)
                     .Take(10)
-                    .Select(x => new { x.ID, Name = x.User.Person.Name + " " + x.User.Person.Surname })
+                    .Select(x => new { x.ID, Name = x.User.Person.Name + " " + x.User.Person.Surname ,x.User.Person.PhotoUrl})
                     .ToListAsync();
 
-                return GenericResult<List<(int id, string name)>>.Success(students.Select(x => (x.ID, x.Name)).ToList());
+                return GenericResult<List<(int id, string name, string foto)>>.Success(students.Select(x => (x.ID, x.Name,x.PhotoUrl)).ToList());
             }
             catch (Exception e)
             {
-                return GenericResult<List<(int id, string name)>>.Error(null, e);
+                return GenericResult<List<(int id, string name, string foto)>>.Error(null, e);
             }
         }
         public async Task<GenericResult<StudentInformationDto>> GetStudentInformationById(int id)

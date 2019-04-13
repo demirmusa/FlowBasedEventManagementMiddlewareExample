@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentManagementSystem.Business.StudentSearch.dto
+namespace StudentManagementSystem.Business.StudentSearch.Dto
 {
     public class StudentInformationDto
     {
@@ -15,5 +15,6 @@ namespace StudentManagementSystem.Business.StudentSearch.dto
         public string UserName { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string PhotoUrl { get; set; }
     }
 }

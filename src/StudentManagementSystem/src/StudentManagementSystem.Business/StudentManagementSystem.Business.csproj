@@ -5,16 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\StudentManagementSystem.Data\StudentManagementSystem.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="EFCore.GenericRepository">
+      <HintPath>..\..\..\..\..\EFCoreGenericRepository\src\EFCore.GenericRepository\bin\Release\netstandard2.0\EFCore.GenericRepository.dll</HintPath>
+    </Reference>
     <Reference Include="Example.CoreShareds">
       <HintPath>..\..\..\Example.AllShareds\Example.CoreShareds\bin\Release\netstandard2.0\Example.CoreShareds.dll</HintPath>
     </Reference>
-    <Reference Include="Example.EFCoreShared">
-      <HintPath>..\..\..\Example.AllShareds\Example.EFCoreShared\bin\Release\netstandard2.0\Example.EFCoreShared.dll</HintPath>
-    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="User\Dto\" />
+    <Folder Include="User\Interface\" />
   </ItemGroup>
 
 </Project>

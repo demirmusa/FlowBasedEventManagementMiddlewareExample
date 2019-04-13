@@ -1,11 +1,11 @@
-using Example.EFCoreShared;
-using Example.EFCoreShared.interfaces;
+using EFCore.GenericRepository;
+using EFCore.GenericRepository.interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using StudentManagementSystem.Business;
 using StudentManagementSystem.Data;
-using StudentManagementSystem.Data.dbEntities;
+using StudentManagementSystem.Data.DbEntities;
 using System;
 using System.Linq;
 
@@ -16,7 +16,7 @@ namespace Tests
         IGenericRepository<SMSDbContext, Person> _personRepo;
         IGenericRepository<SMSDbContext, StudentCourseScore> _studentCourseScoreRepo;
 
-        IMyGenericRepository<Person> _personMyRepo;
+        ISMSDbContextGenericRepository<Person> _personMyRepo;
         [SetUp]
         public void Setup()
         {
@@ -27,14 +27,14 @@ namespace Tests
 
             services.AddGenericRepositoryScoped();
 
-            services.AddScoped(typeof(IMyGenericRepository<>), typeof(MyGenericRepository<>));
+            services.AddScoped(typeof(ISMSDbContextGenericRepository<>), typeof(SMSDbContextGenericRepository<>));
 
             var provider = services.BuildServiceProvider();
 
              _personRepo = provider.GetService<IGenericRepository<SMSDbContext, Person>>();
             _studentCourseScoreRepo = provider.GetService<IGenericRepository<SMSDbContext, StudentCourseScore>>();
 
-            _personMyRepo = provider.GetService<IMyGenericRepository<Person>>();
+            _personMyRepo = provider.GetService<ISMSDbContextGenericRepository<Person>>();
         }
 
         [Test]

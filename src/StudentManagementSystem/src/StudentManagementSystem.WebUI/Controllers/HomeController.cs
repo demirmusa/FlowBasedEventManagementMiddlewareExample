@@ -23,7 +23,7 @@ namespace StudentManagementSystem.WebUI.Controllers
             return View();
         }
 
-        public async Task<GenericResult<List<(int id, string name)>>> Search(string query)
+        public async Task<GenericResult<List<(int id, string name,string foto)>>> Search(string query)
         {
             var searchResult = await _studentSearchBL.SearchStudent(query);
 

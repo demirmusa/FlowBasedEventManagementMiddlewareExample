@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StudentManagementSystem.Data.dbEntities;
+using StudentManagementSystem.Data.DbEntities;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -1,4 +1,4 @@
-﻿using Example.EFCoreShared;
+﻿using EFCore.GenericRepository;
 using StudentManagementSystem.Data;
 using System;
 using System.Collections.Generic;
@@ -6,10 +6,10 @@ using System.Text;
 
 namespace StudentManagementSystem.Business
 {
-    public class MyGenericRepository<TEntity> : GenericRepository<SMSDbContext, TEntity>, IMyGenericRepository<TEntity>
+    public class SMSDbContextGenericRepository<TEntity> : GenericRepository<SMSDbContext, TEntity>, ISMSDbContextGenericRepository<TEntity>
         where TEntity : BaseDbEntity
     {
-        public MyGenericRepository(SMSDbContext context) : base(context)
+        public SMSDbContextGenericRepository(SMSDbContext context) : base(context)
         {
             //context.Database.EnsureCreated();
         }

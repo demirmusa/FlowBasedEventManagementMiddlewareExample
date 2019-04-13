@@ -24,13 +24,10 @@ namespace Example.CoreShareds
         }
         public static GenericResult<T> GetUserSafeResult<T>(this GenericResult<T> result, string msg = "An Error occured")
         {
-            if (result.IsSucceed)
+            if (result.IsSucceed || result.EnumResultType == EnumResultType.UserSafeError)
                 return result;
 
-            if (result.EnumResultType != EnumResultType.UserSafeError)
-                return GenericResult<T>.UserSafeError(result.Data, "An Error occured");
-
-            return result;
+            return GenericResult<T>.UserSafeError(result.Data, "An Error occured");
         }
 
         public static string GetAllMessage<T>(this GenericResult<T> result, bool userSafeMsg = true, string defaultMsg = "An Error occured", string separator = " ")

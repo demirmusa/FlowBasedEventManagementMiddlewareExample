@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using StudentManagementSystem.Business.StudentSearch.dto;
+using StudentManagementSystem.Business.StudentSearch.Dto;
 using StudentManagementSystem.WebUI.Models;
 
 namespace StudentManagementSystem.WebUI.Controllers

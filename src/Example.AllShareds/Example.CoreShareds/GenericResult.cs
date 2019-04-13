@@ -4,8 +4,6 @@ using System.Text;
 
 namespace Example.CoreShareds
 {
-
-
     public class GenericResult<T>
     {
         public T Data { get; set; }
@@ -20,15 +18,7 @@ namespace Example.CoreShareds
                 return this.EnumResultType == EnumResultType.Success;
             }
         }
-
-        public GenericResult(T data, EnumResultType enumIslemSonuc)
-        {
-            Data = data;
-            EnumResultType = enumIslemSonuc;
-            MessageList = new List<string>();
-        }
-
-        public GenericResult()
+        private GenericResult()
         {
         }
 
@@ -40,12 +30,7 @@ namespace Example.CoreShareds
                 MessageList = messageList
             };
         }
-
-        public GenericResult(T data, EnumResultType enumIslemSonuc, System.Exception exception) : this(data, enumIslemSonuc)
-        {
-            Exception = exception;
-        }
-
+     
         public static GenericResult<T> Success(T data, List<string> messageList = null)
         {
             var result = Fill(data, messageList);
@@ -56,6 +41,13 @@ namespace Example.CoreShareds
         {
             var result = Fill(data, string.IsNullOrEmpty(message) ? null : new List<string>() { message });
             result.EnumResultType = EnumResultType.Success;
+            return result;
+        }
+        public static GenericResult<T> Error(Exception e)
+        {
+            var result = Fill(default(T), null);
+            result.EnumResultType = EnumResultType.Error;
+            result.Exception = e;
             return result;
         }
         public static GenericResult<T> Error(T data, Exception e)
@@ -100,6 +92,12 @@ namespace Example.CoreShareds
         public static GenericResult<T> UserSafeError(T data, string message)
         {
             var result = Fill(data, string.IsNullOrEmpty(message) ? null : new List<string>() { message });
+            result.EnumResultType = EnumResultType.UserSafeError;
+            return result;
+        }
+        public static GenericResult<T> UserSafeError(string message)
+        {
+            var result = Fill(default(T), string.IsNullOrEmpty(message) ? null : new List<string>() { message });
             result.EnumResultType = EnumResultType.UserSafeError;
             return result;
         }

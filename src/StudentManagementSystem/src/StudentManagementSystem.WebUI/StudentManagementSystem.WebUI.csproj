@@ -13,7 +13,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
 
@@ -24,12 +24,22 @@
 
 
   <ItemGroup>
+    <Reference Include="EFCore.GenericRepository">
+      <HintPath>..\..\..\..\..\EFCoreGenericRepository\src\EFCore.GenericRepository\bin\Release\netstandard2.0\EFCore.GenericRepository.dll</HintPath>
+    </Reference>
     <Reference Include="Example.CoreShareds">
       <HintPath>..\..\..\Example.AllShareds\Example.CoreShareds\bin\Release\netstandard2.0\Example.CoreShareds.dll</HintPath>
     </Reference>
-    <Reference Include="Example.EFCoreShared">
-      <HintPath>..\..\..\Example.AllShareds\Example.EFCoreShared\bin\Release\netstandard2.0\Example.EFCoreShared.dll</HintPath>
-    </Reference>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Areas\Management\Controllers\" />
+    <Folder Include="Areas\Management\Data\" />
+    <Folder Include="Areas\Management\Models\" />
+    <Folder Include="Areas\StudentDashboard\Controllers\" />
+    <Folder Include="Areas\StudentDashboard\Data\" />
+    <Folder Include="Areas\StudentDashboard\Models\" />
   </ItemGroup>
 
 </Project>

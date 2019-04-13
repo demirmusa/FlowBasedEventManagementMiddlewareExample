@@ -10,8 +10,8 @@ using StudentManagementSystem.Data;
 namespace StudentManagementSystem.Data.Migrations
 {
     [DbContext(typeof(SMSDbContext))]
-    [Migration("20190328154805_initialcreate")]
-    partial class initialcreate
+    [Migration("20190402205132_person-photo")]
+    partial class personphoto
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,7 +64,9 @@ namespace StudentManagementSystem.Data.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("SurName");
+                    b.Property<string>("PhotoUrl");
+
+                    b.Property<string>("Surname");
 
                     b.HasKey("ID");
 

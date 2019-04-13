@@ -3,13 +3,123 @@
 }
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
+<div class="x_panel col-md-8 col-md-offset-2">
+    <div class="x_title">
+        <h2>Choose Student</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <br>
+        <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+            <div class="form-group">
+
+                <div class="col-md-12">
+                    <select class="form-control" id="studentSelect"></select>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="ln_solid"></div>
+            <div id="studentInformationDiv">
+
+            </div>
+
+        </form>
+
+    </div>
 </div>
-
 @section Scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script>
+        $('#2').select2({
+            ajax: {
+                url: 'Home/Search',
+                data: function (params) {
+                    var query = {
+                        search: params.term,
+                        type: 'public'
+                    }
 
+                    // Query parameters will be ?search=[term]&type=public
+                    return query;
+                },
+                processResults: function (data) {
+                    // Tranforms the top-level key of the response object from 'items' to 'results'
+                    var dataNew = $.map(data, function (obj) {
+                        obj.id = obj.id || obj.pk; // replace pk with your identifier
+                        obj.name = "test";
+                        return obj;
+                    });
+                    return {
+                        results: dataNew
+                    };
+                }
+            }
+        });
+
+
+
+        $("#studentSelect").select2({
+            ajax: {
+                url: "Home/Search",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term, // search term
+                    };
+                },
+                processResults: function (result, params) {
+                    console.log(result);                  
+
+                    if (result.IsSucceed) 
+                        return {
+                            results: result.Data
+                        };
+                    else {
+                        sms.toastGenericResult(result);
+                        return {
+                            results: []
+                        };
+                    }
+                
+                },
+                cache: false
+            },
+            placeholder: 'Search for a student',
+            escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+            minimumInputLength: 2,
+            templateResult: formatRepo,
+            templateSelection: formatRepoSelection
+        });
+
+        function formatRepo(repo) {
+            if (repo.loading) {
+                return repo.text;
+            }
+
+            var markup = "<div class='select2-result-repository clearfix'>" +
+                "<div class='select2-result-repository__avatar'><img src='" + repo.owner.avatar_url + "' / width='50px !important'></div>" +
+                "<div class='select2-result-repository__meta'>" +
+                "<div class='select2-result-repository__title'>" + repo.full_name + "</div>";
+
+            if (repo.description) {
+                markup += "<div class='select2-result-repository__description'>" + repo.description + "</div>";
+            }
+
+            markup += "<div class='select2-result-repository__statistics'>" +
+                "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + repo.forks_count + " Forks</div>" +
+                "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+                "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+                "</div>" +
+                "</div></div>";
+
+            return markup;
+        }
+
+        function formatRepoSelection(repo) {
+            return repo.full_name || repo.text;
+        }
+    </script>
 }

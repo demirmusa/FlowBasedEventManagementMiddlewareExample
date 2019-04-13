@@ -1,13 +1,11 @@
-﻿using EFCore.GenericRepository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentManagementSystem.Data.DbEntities
+namespace StudentManagementSystem.Business.Population.Dto
 {
-    public class PopulationInformation : SoftDeletableDbEntity
+    public class PopulationInformationDto
     {
-        ///its string value just because this is an example project , we should storage countires and use country id in that
         public string Nationality { get; set; }
         public string MotherName { get; set; }
         public string FatherName { get; set; }
