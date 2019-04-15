@@ -32,43 +32,7 @@ namespace StudentManagementSystem.WebUI
 
         }
 
-        public static void AutoMapperInitizer()
-        {
-            return;
-            Mapper.Initialize(config =>
-            {
-                config.ShouldMapProperty = p => false;
-                config.ShouldMapField = f => false;
-
-                config.CreateMap<NewStudentInformationDto, StudentInformation>()
-                .ForMember(m => m.CreationTime, opt => opt.Ignore())
-                .ForMember(m => m.Deleted, opt => opt.Ignore())
-                .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
-                .ReverseMap();
-
-                config.CreateMap<PopulationInformationDto, PopulationInformation>()
-                .ForMember(m => m.CreationTime, opt => opt.Ignore())
-                .ForMember(m => m.Deleted, opt => opt.Ignore())
-                .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
-                .ReverseMap();
-
-                config.CreateMap<PersonDto, Person>(MemberList.Destination)
-                .ForMember(m => m.CreationTime, opt => opt.Ignore())
-                .ForMember(m => m.Deleted, opt => opt.Ignore())
-                .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
-                .ReverseMap();
-
-                config.CreateMap<NewUserDto, User>(MemberList.Destination)
-                .ForMember(m => m.CreationTime, opt => opt.Ignore())
-                .ForMember(m => m.Deleted, opt => opt.Ignore())
-                .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
-                .ForMember(m => m.PasswordHash, opt => opt.Ignore())
-                .ReverseMap();
-
-
-
-            });
-        }
+      
     }
     public class AutoMapperProfiles : Profile
     {
