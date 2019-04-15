@@ -38,6 +38,7 @@ namespace StudentManagementSystem.Business.StudentBusiness
         {
             try
             {
+                newStudentInformationDto.RegistrationDate = DateTime.Now;
                 var newPopulationResult = await _populationService.AddPopulationInfo(newStudentInformationDto.NewUserDto.PersonDto.PopulationInformationDto);
                 if (newPopulationResult.IsSucceed)
                 {

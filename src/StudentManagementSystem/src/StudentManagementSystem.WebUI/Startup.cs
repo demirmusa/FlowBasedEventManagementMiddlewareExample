@@ -52,6 +52,7 @@ namespace StudentManagementSystem.WebUI
             });
 
             ServicesInitializer.InitializeServices(services);
+            ServicesInitializer.AutoMapperInitizer();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                     .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());

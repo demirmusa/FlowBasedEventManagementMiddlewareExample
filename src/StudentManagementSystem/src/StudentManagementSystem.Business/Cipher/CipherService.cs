@@ -2,15 +2,18 @@
 using System;
 namespace StudentManagementSystem.Business.Cipher
 {
+    /// <summary>
+    /// they return text because its an example
+    /// </summary>
     public class CipherService : ICipherService
     {
         public string Decrypt(string cipherText)
         {
-            throw new NotImplementedException();
+            return cipherText;
         }
         public string Encrypt(string text)
         {
-            throw new NotImplementedException();
+            return text;
         }
     }
 }

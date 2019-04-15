@@ -39,7 +39,7 @@ namespace StudentManagementSystem.Business.UserBusiness
                     FKPersonID = newUserDto.FKPersonID,
                     Email = newUserDto.Email,
                     UserName = newUserDto.UserName,
-                    PasswordHash = _cipherService.Encrypt(newUserDto.Password)
+                    PasswordHash = _cipherService.Encrypt(newUserDto.Password),
                 });
                 return GenericResult<UserDto>.Success(_mapper.Map<UserDto>(newUser));
             }

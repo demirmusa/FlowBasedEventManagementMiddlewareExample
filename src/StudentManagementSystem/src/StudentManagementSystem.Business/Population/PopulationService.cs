@@ -23,7 +23,8 @@ namespace StudentManagementSystem.Business.Population
         {
             try
             {
-                var newPopulation = await _populationRepo.InsertAsync(_mapper.Map<PopulationInformation>(informationDto));
+                var mappedEntity = _mapper.Map<PopulationInformation>(informationDto);
+                var newPopulation = await _populationRepo.InsertAsync(mappedEntity);
                 return GenericResult<PopulationInformationDto>.Success(_mapper.Map<PopulationInformationDto>(newPopulation));
             }
             catch (Exception e)
@@ -36,4 +37,5 @@ namespace StudentManagementSystem.Business.Population
 
 
     }
+  
 }

@@ -25,13 +25,16 @@ namespace Example.CoreShareds
         public static GenericResult<T> GetUserSafeResult<T>(this GenericResult<T> result, string baseMsg = "")
         {
             if (result.IsSucceed || result.EnumResultType == EnumResultType.UserSafeError)
-                return GenericResult<T>.UserSafeError(result.Data, baseMsg + " " + result.GetAllMessage());
+                return result;
 
             return GenericResult<T>.UserSafeError(result.Data, baseMsg);
         }
         public static GenericResult<TResult> GetUserSafeResult<TResult, TEntry>(this GenericResult<TEntry> entry, TResult result = default(TResult), string baseMsg = "")
         {
-            if (entry.IsSucceed || entry.EnumResultType == EnumResultType.UserSafeError)
+            if (entry.IsSucceed)
+                return GenericResult<TResult>.Success(result, baseMsg);
+
+            if (entry.EnumResultType == EnumResultType.UserSafeError)
                 return GenericResult<TResult>.UserSafeError(result, baseMsg + " " + entry.GetAllMessage());
 
             return GenericResult<TResult>.UserSafeError(result, baseMsg);
@@ -42,7 +45,7 @@ namespace Example.CoreShareds
             switch (entry.EnumResultType)
             {
                 case EnumResultType.Success:
-                    return GenericResult<TResult>.Success(result, msg);
+                    return GenericResult<TResult>.Success(result, baseMsg + " " + entry.GetAllMessage(false));
                 case EnumResultType.Error:
                     return GenericResult<TResult>.Error(result, msg);
                 case EnumResultType.Warning:
@@ -53,11 +56,11 @@ namespace Example.CoreShareds
                     return GenericResult<TResult>.Error(result, msg);
             }
         }
-        public static string GetAllMessage<T>(this GenericResult<T> result, bool userSafeMsg = true, string defaultMsg = "An Error occured", string separator = " ")
+        public static string GetAllMessage<T>(this GenericResult<T> result, bool userSafeMsg = true, string defaultMsg = "", string separator = " -> ")
         {
             if (userSafeMsg)
             {
-                if (result.EnumResultType == EnumResultType.UserSafeError)
+                if (result.IsSucceed || result.EnumResultType == EnumResultType.UserSafeError)
                     return result.MessageList == null ? defaultMsg : string.Join(separator, result.MessageList);
                 else
                     return defaultMsg;

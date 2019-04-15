@@ -6,6 +6,10 @@ using StudentManagementSystem.Business.People.Dto;
 using StudentManagementSystem.Business.Population.Dto;
 using StudentManagementSystem.Data.DbEntities;
 using AutoMapper.Mappers.Internal;
+using StudentManagementSystem.Business.StudentBusiness;
+using StudentManagementSystem.Business.UserBusiness.Dto;
+using StudentManagementSystem.Business.StudentBusiness.Dto;
+
 namespace StudentManagementSystem.WebUI
 {
     public class ServicesInitializer
@@ -24,23 +28,92 @@ namespace StudentManagementSystem.WebUI
             services.AddTransient<Business.People.Interfaces.IPeopleService, Business.People.PeopleService>();
             services.AddTransient<Business.Cipher.Interfaces.ICipherService, Business.Cipher.CipherService>();
             services.AddTransient<Business.Population.Interfaces.IPopulationService, Business.Population.PopulationService>();
-            services.AddTransient<Business.StudentBusiness.Interfaces.IStudentRegistrationService, Business.StudentBusiness.Interfaces.IStudentRegistrationService>();
-
+            services.AddTransient<Business.StudentBusiness.Interfaces.IStudentRegistrationService, StudentRegistrationService>();
 
         }
 
-        public static void AutoMapperInitizer(IMapper mapper)
+        public static void AutoMapperInitizer()
         {
+            return;
             Mapper.Initialize(config =>
             {
-                config.CreateMap<PopulationInformation, PopulationInformationDto>();
-                config.CreateMap<PopulationInformationDto, PopulationInformation>();
+                config.ShouldMapProperty = p => false;
+                config.ShouldMapField = f => false;
 
-                config.CreateMap<Person, PersonDto>();
-                config.CreateMap<PersonDto, Person>();
+                config.CreateMap<NewStudentInformationDto, StudentInformation>()
+                .ForMember(m => m.CreationTime, opt => opt.Ignore())
+                .ForMember(m => m.Deleted, opt => opt.Ignore())
+                .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
+                .ReverseMap();
+
+                config.CreateMap<PopulationInformationDto, PopulationInformation>()
+                .ForMember(m => m.CreationTime, opt => opt.Ignore())
+                .ForMember(m => m.Deleted, opt => opt.Ignore())
+                .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
+                .ReverseMap();
+
+                config.CreateMap<PersonDto, Person>(MemberList.Destination)
+                .ForMember(m => m.CreationTime, opt => opt.Ignore())
+                .ForMember(m => m.Deleted, opt => opt.Ignore())
+                .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
+                .ReverseMap();
+
+                config.CreateMap<NewUserDto, User>(MemberList.Destination)
+                .ForMember(m => m.CreationTime, opt => opt.Ignore())
+                .ForMember(m => m.Deleted, opt => opt.Ignore())
+                .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
+                .ForMember(m => m.PasswordHash, opt => opt.Ignore())
+                .ReverseMap();
+
 
 
             });
+        }
+    }
+    public class AutoMapperProfiles : Profile
+    {
+        public AutoMapperProfiles()
+        {
+            CreateMap<NewStudentInformationDto, StudentInformation>()
+            .ForMember(m => m.CreationTime, opt => opt.Ignore())
+            .ForMember(m => m.Deleted, opt => opt.Ignore())
+            .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
+            .ForMember(m => m.User, opt => opt.Ignore())
+            .ReverseMap();
+            CreateMap<StudentInformationDto, StudentInformation>()
+               .ForMember(m => m.CreationTime, opt => opt.Ignore())
+               .ForMember(m => m.Deleted, opt => opt.Ignore())
+               .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
+               .ForMember(m => m.User, opt => opt.Ignore())
+               .ReverseMap();
+            CreateMap<PopulationInformationDto, PopulationInformation>()
+            .ForMember(m => m.CreationTime, opt => opt.Ignore())
+            .ForMember(m => m.Deleted, opt => opt.Ignore())
+            .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
+            .ReverseMap();
+
+            CreateMap<PersonDto, Person>(MemberList.Destination)
+            .ForMember(m => m.CreationTime, opt => opt.Ignore())
+            .ForMember(m => m.Deleted, opt => opt.Ignore())
+            .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
+            .ForMember(m => m.PopulationInformation, opt => opt.Ignore())
+            .ReverseMap();
+
+            //CreateMap<NewUserDto, User>(MemberList.Destination)
+            //.ForMember(m => m.CreationTime, opt => opt.Ignore())
+            //.ForMember(m => m.Deleted, opt => opt.Ignore())
+            //.ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
+            //.ForMember(m => m.PasswordHash, opt => opt.Ignore())
+            //.ForMember(m => m.Person, opt => opt.Ignore())
+            //.ReverseMap();
+
+            CreateMap<UserDto, User>(MemberList.Destination)
+          .ForMember(m => m.CreationTime, opt => opt.Ignore())
+          .ForMember(m => m.Deleted, opt => opt.Ignore())
+          .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
+          .ForMember(m => m.PasswordHash, opt => opt.Ignore())
+          .ForMember(m => m.Person, opt => opt.Ignore())
+          .ReverseMap();
         }
     }
 }

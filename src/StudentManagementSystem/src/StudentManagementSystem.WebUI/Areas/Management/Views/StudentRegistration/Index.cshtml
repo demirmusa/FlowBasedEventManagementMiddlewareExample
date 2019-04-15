@@ -2,16 +2,22 @@
 @{
     ViewData["Title"] = "Index";
 }
-<form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+<style>
+    .stepContainer {
+        height:350px !important;
+    }
+</style>
+<link href="~/gentelella/css/nprogress.css" rel="stylesheet" />
 
-  
+<form id="demo-form2" asp-action="RegisterNewStudent" asp-controller="StudentRegistration" asp-area="Management" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+
+
     <div class="x_panel col-md-8 col-md-offset-2">
         <div class="x_title">
             <h2>Population Information</h2>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <br>
             <!-- Tabs -->
             <div id="wizard_verticle" class="form_wizard wizard_verticle">
                 <ul class="list-unstyled wizard_steps">
@@ -38,104 +44,125 @@
                 </ul>
 
                 <div id="step-11">
-                    <h2 class="StepTitle">Step 1 Content</h2>
-                   
-                        <span class="section">Personal Info</span>
+                    <h2 class="StepTitle">Population Information</h2>
 
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3" for="first-name">
-                                First Name <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" id="first-name2" required="required" class="form-control col-md-7 col-xs-12">
-                            </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">
+                            Nationality <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input asp-for="NewUserDto.PersonDto.PopulationInformationDto.Nationality" required="required"
+                                   class="form-control col-md-7 col-xs-12" type="text">
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3" for="last-name">
-                                Last Name <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="text" id="last-name2" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">
+                            MotherName <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input asp-for="NewUserDto.PersonDto.PopulationInformationDto.MotherName" required="required"
+                                   class="form-control col-md-7 col-xs-12" type="text">
                         </div>
-                        <div class="form-group">
-                            <label for="middle-name" class="control-label col-md-3 col-sm-3">Middle Name / Initial</label>
-                            <div class="col-md-6 col-sm-6">
-                                <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">
+                            Father Name <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input asp-for="NewUserDto.PersonDto.PopulationInformationDto.FatherName" class="form-control col-md-7 col-xs-12" type="text">
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3">Gender</label>
-                            <div class="col-md-6 col-sm-6">
-                                <div id="gender2" class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
-                                    </label>
-                                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="gender" value="female" checked=""> Female
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3">
-                                Date Of Birth <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6">
-                                <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                            </div>
-                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">
+                            Date Of Birth <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input asp-for="NewUserDto.PersonDto.PopulationInformationDto.BirthDay" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">
+                            Place Of Birth <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input asp-for="NewUserDto.PersonDto.PopulationInformationDto.BirthPlace" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                        </div>
+                    </div>
                 </div>
                 <div id="step-22">
-                    <h2 class="StepTitle">Step 2 Content</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
+                    <h2 class="StepTitle">Person Information</h2>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">
+                            PhotoUrl <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input asp-for="NewUserDto.PersonDto.PhotoUrl" required="required"
+                                   class="form-control col-md-7 col-xs-12" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">
+                            Name <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input asp-for="NewUserDto.PersonDto.Name" required="required"
+                                   class="form-control col-md-7 col-xs-12" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">
+                            Surname <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input asp-for="NewUserDto.PersonDto.Surname" required="required"
+                                   class="form-control col-md-7 col-xs-12" type="text">
+                        </div>
+                    </div>
                 </div>
                 <div id="step-33">
-                    <h2 class="StepTitle">Step 3 Content</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
+                    <h2 class="StepTitle">User Information</h2>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">
+                            Email <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input asp-for="NewUserDto.Email" required="required"
+                                   class="form-control col-md-7 col-xs-12" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">
+                            UserName <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input asp-for="NewUserDto.UserName" required="required"
+                                   class="form-control col-md-7 col-xs-12" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">
+                            Password <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input asp-for="NewUserDto.Password" required="required"
+                                   class="form-control col-md-7 col-xs-12" type="password">
+                        </div>
+                    </div>
                 </div>
                 <div id="step-44">
-                    <h2 class="StepTitle">Step 4 Content</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
+                    <h2 class="StepTitle">Student Information</h2>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">
+                            Student Number <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input asp-for="StudentNumber" required="required"
+                                   class="form-control col-md-7 col-xs-12" type="text">
+                        </div>
+                    </div>
                 </div>
+                <div class="clearfix"></div>
             </div>
             <!-- End SmartWizard Content -->
 
@@ -144,3 +171,11 @@
     </div>
 
 </form>
+@section Scripts{
+    <!-- FastClick -->
+    <script src="~/gentelella/js/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/gentelella/js/nprogress.js"></script>
+
+    <script src="~/gentelella/js/jquery.smartWizard.js"></script>
+}

@@ -21,10 +21,11 @@ namespace StudentManagementSystem.WebUI.Areas.Management.Controllers
         {
             return View();
         }
-        public async Task<GenericResult<bool>> RegisterNewStudent(NewStudentInformationDto newStudentInformationDto)
+        [HttpPost]
+        public async Task<ActionResult> RegisterNewStudent(NewStudentInformationDto newStudentInformationDto)
         {
             var registrationResult = await _studentRegistrationService.AddNewStudent(newStudentInformationDto);
-            return registrationResult.GetUserSafeResult<bool, StudentInformationDto>();
+            return View(registrationResult.GetUserSafeResult<bool, StudentInformationDto>());
         }
     }
 }
