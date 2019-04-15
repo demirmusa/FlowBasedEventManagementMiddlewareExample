@@ -17,7 +17,7 @@ namespace StudentManagementSystem.Business.StudentSearch
         {
             _studentInformationRepo = studentInformationRepo;
         }
-        public async Task<GenericResult<List<(int id, string name, string foto)>>> SearchStudent(string query)
+        public async Task<GenericResult<List<(int id, string name, string foto, string studentNumber)>>> SearchStudent(string query)
         {
             try
             {
@@ -30,14 +30,14 @@ namespace StudentManagementSystem.Business.StudentSearch
                     )
                     .OrderByDescending(x => x.ID).ThenBy(x => x.StudentNumber)
                     .Take(10)
-                    .Select(x => new { x.ID, Name = x.User.Person.Name + " " + x.User.Person.Surname ,x.User.Person.PhotoUrl})
+                    .Select(x => new { x.ID, Name = x.User.Person.Name + " " + x.User.Person.Surname, x.User.Person.PhotoUrl, x.StudentNumber })
                     .ToListAsync();
 
-                return GenericResult<List<(int id, string name, string foto)>>.Success(students.Select(x => (x.ID, x.Name,x.PhotoUrl)).ToList());
+                return GenericResult<List<(int id, string name, string foto, string studentNumber)>>.Success(students.Select(x => (x.ID, x.Name, x.PhotoUrl, x.StudentNumber)).ToList());
             }
             catch (Exception e)
             {
-                return GenericResult<List<(int id, string name, string foto)>>.Error(null, e);
+                return GenericResult<List<(int id, string name, string foto, string studentNumber)>>.Error(null, e);
             }
         }
         public async Task<GenericResult<StudentSearchResultDto>> GetStudentInformationById(int id)

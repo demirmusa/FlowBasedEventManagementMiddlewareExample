@@ -1,6 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    .select2-raw-content-text {
+        float: left;
+        line-height: 50px;
+        padding: 3px 15px;
+    }
+</style>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
 <div class="x_panel col-md-8 col-md-offset-2">
@@ -30,96 +37,96 @@
     </div>
 </div>
 @section Scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script>
-        $('#2').select2({
-            ajax: {
-                url: 'Home/Search',
-                data: function (params) {
-                    var query = {
-                        search: params.term,
-                        type: 'public'
-                    }
-
-                    // Query parameters will be ?search=[term]&type=public
-                    return query;
-                },
-                processResults: function (data) {
-                    // Tranforms the top-level key of the response object from 'items' to 'results'
-                    var dataNew = $.map(data, function (obj) {
-                        obj.id = obj.id || obj.pk; // replace pk with your identifier
-                        obj.name = "test";
-                        return obj;
-                    });
-                    return {
-                        results: dataNew
-                    };
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script>
+$('#2').select2({
+        ajax: {
+            url: 'Home/Search',
+            data: function (params) {
+                var query = {
+                    search: params.term,
+                    type: 'public'
                 }
-            }
-        });
 
-
-
-        $("#studentSelect").select2({
-            ajax: {
-                url: "Home/Search",
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        query: params.term, // search term
-                    };
-                },
-                processResults: function (result, params) {
-                    console.log(result);                  
-
-                    if (result.IsSucceed) 
-                        return {
-                            results: result.Data
-                        };
-                    else {
-                        sms.toastGenericResult(result);
-                        return {
-                            results: []
-                        };
-                    }
-                
-                },
-                cache: false
+                // Query parameters will be ?search=[term]&type=public
+                return query;
             },
-            placeholder: 'Search for a student',
-            escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
-            minimumInputLength: 2,
-            templateResult: formatRepo,
-            templateSelection: formatRepoSelection
-        });
+            processResults: function (data) {
+                // Tranforms the top-level key of the response object from 'items' to 'results'
+                var dataNew = $.map(data, function (obj) {
+                    obj.id = obj.id || obj.pk; // replace pk with your identifier
+                    obj.name = "test";
+                    return obj;
+                });
+                return {
+                    results: dataNew
+                };
+            }
+        }
+    });
 
-        function formatRepo(repo) {
-            if (repo.loading) {
-                return repo.text;
+
+
+$("#studentSelect").select2({
+    ajax: {
+        url: "Home/Search",
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+            return {
+                query: params.term, // search term
+            };
+        },
+        processResults: function (result, params) {
+            console.log(result);
+
+            if (result.IsSucceed) {
+                if (result.Data.length > 0)
+                    return {
+                        results: result.Data.map(obj => {
+                            obj.id = obj.Item1;
+                            obj.text = obj.Item2;
+                            return obj;
+                        })
+                    };
+                else
+                    return {
+                        results: []
+                    };
+            }
+            else {
+                sms.toastGenericResult(result);
+                return {
+                    results: []
+                };
             }
 
-            var markup = "<div class='select2-result-repository clearfix'>" +
-                "<div class='select2-result-repository__avatar'><img src='" + repo.owner.avatar_url + "' / width='50px !important'></div>" +
-                "<div class='select2-result-repository__meta'>" +
-                "<div class='select2-result-repository__title'>" + repo.full_name + "</div>";
+        },
+        cache: false
+    },
+    placeholder: 'Search for a student',
+    escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+    minimumInputLength: 2,
+    templateResult: formatState,
+    //templateSelection: formatState
+});
 
-            if (repo.description) {
-                markup += "<div class='select2-result-repository__description'>" + repo.description + "</div>";
-            }
+$("#studentSelect").change(function () {
+    $.get("/Home/SelectStudent/" + $("#studentSelect").val(), function (result) {
+        sms.toastGenericResult(result);
+    });
+});
+function formatState(state) {
+    if (state.loading || state.Item3 == null || state.Item3 == "") {
+        return state.text;
+    }
+    state.id = state.Item1;
 
-            markup += "<div class='select2-result-repository__statistics'>" +
-                "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + repo.forks_count + " Forks</div>" +
-                "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
-                "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
-                "</div>" +
-                "</div></div>";
+    var $state = $(
+        '<div class="col-xs-12"><div style="float:left"><img src="' + state.Item3 + '.png" class="img img-responsive" style="width:50px !important;"/> </div><div class="select2-raw-content-text">' + state.Item2 + " - " + state.Item4 + '</div></div> <div class="clearfix"><div>'
+    );
+    return $state;
+};
 
-            return markup;
-        }
-
-        function formatRepoSelection(repo) {
-            return repo.full_name || repo.text;
-        }
-    </script>
+</script>
 }

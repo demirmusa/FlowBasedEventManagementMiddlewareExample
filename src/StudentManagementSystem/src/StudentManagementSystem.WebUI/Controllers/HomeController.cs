@@ -23,7 +23,7 @@ namespace StudentManagementSystem.WebUI.Controllers
             return View();
         }
 
-        public async Task<GenericResult<List<(int id, string name, string foto)>>> Search(string query)
+        public async Task<GenericResult<List<(int id, string name, string foto, string studentNumber)>>> Search(string query)
         {
             var searchResult = await _studentSearchService.SearchStudent(query);
 
@@ -33,9 +33,12 @@ namespace StudentManagementSystem.WebUI.Controllers
         {
             var searchResult = await _studentSearchService.GetStudentInformationById(id);
             if (searchResult.IsSucceed)
-                return GenericResult<bool>.Success(true);
-            else            
-                return searchResult.GetUserSafeResult(false);            
+            {
+                SetSelectedStudent(searchResult.Data);
+                return GenericResult<bool>.Success(true, "Student selected");
+            }
+            else
+                return searchResult.GetUserSafeResult(false);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

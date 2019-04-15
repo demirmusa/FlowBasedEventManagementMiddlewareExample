@@ -9,7 +9,7 @@ namespace StudentManagementSystem.Business.StudentSearch.interfaces
 {
     public interface IStudentSearchService
     {
-        Task<GenericResult<List<(int id, string name,string foto)>>> SearchStudent(string query);
+        Task<GenericResult<List<(int id, string name,string foto, string studentNumber)>>> SearchStudent(string query);
         Task<GenericResult<StudentSearchResultDto>> GetStudentInformationById(int id);
     }
 }
