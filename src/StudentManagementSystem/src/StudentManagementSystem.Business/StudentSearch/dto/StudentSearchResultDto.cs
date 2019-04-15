@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StudentManagementSystem.Business.StudentSearch.Dto
 {
-    public class StudentInformationDto
+    public class StudentSearchResultDto
     {
         public int ID { get; set; }
 

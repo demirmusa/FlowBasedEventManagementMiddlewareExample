@@ -22,14 +22,37 @@ namespace Example.CoreShareds
             } while (e != null);
             return sb.ToString();
         }
-        public static GenericResult<T> GetUserSafeResult<T>(this GenericResult<T> result, string msg = "An Error occured")
+        public static GenericResult<T> GetUserSafeResult<T>(this GenericResult<T> result, string baseMsg = "")
         {
             if (result.IsSucceed || result.EnumResultType == EnumResultType.UserSafeError)
-                return result;
+                return GenericResult<T>.UserSafeError(result.Data, baseMsg + " " + result.GetAllMessage());
 
-            return GenericResult<T>.UserSafeError(result.Data, "An Error occured");
+            return GenericResult<T>.UserSafeError(result.Data, baseMsg);
         }
+        public static GenericResult<TResult> GetUserSafeResult<TResult, TEntry>(this GenericResult<TEntry> entry, TResult result = default(TResult), string baseMsg = "")
+        {
+            if (entry.IsSucceed || entry.EnumResultType == EnumResultType.UserSafeError)
+                return GenericResult<TResult>.UserSafeError(result, baseMsg + " " + entry.GetAllMessage());
 
+            return GenericResult<TResult>.UserSafeError(result, baseMsg);
+        }
+        public static GenericResult<TResult> ConvertTo<TResult, TEntry>(this GenericResult<TEntry> entry, TResult result, string baseMsg = "")
+        {
+            var msg = baseMsg + " " + entry.GetAllMessage();
+            switch (entry.EnumResultType)
+            {
+                case EnumResultType.Success:
+                    return GenericResult<TResult>.Success(result, msg);
+                case EnumResultType.Error:
+                    return GenericResult<TResult>.Error(result, msg);
+                case EnumResultType.Warning:
+                    return GenericResult<TResult>.Warning(result, msg);
+                case EnumResultType.UserSafeError:
+                    return GenericResult<TResult>.UserSafeError(result, msg);
+                default:
+                    return GenericResult<TResult>.Error(result, msg);
+            }
+        }
         public static string GetAllMessage<T>(this GenericResult<T> result, bool userSafeMsg = true, string defaultMsg = "An Error occured", string separator = " ")
         {
             if (userSafeMsg)

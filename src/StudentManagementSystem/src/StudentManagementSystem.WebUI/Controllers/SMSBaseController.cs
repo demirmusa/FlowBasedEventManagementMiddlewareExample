@@ -11,11 +11,11 @@ namespace StudentManagementSystem.WebUI.Controllers
     public class SMSBaseController : Controller
     {
         private const string _sessionKey = "BaseController.Session.SelectedStudent";
-        protected StudentInformationDto SelectedStudent
+        protected StudentSearchResultDto SelectedStudent
         {
             get
             {
-                return HttpContext.Session.Get<StudentInformationDto>(_sessionKey);
+                return HttpContext.Session.Get<StudentSearchResultDto>(_sessionKey);
             }
             private set
             {
@@ -24,7 +24,7 @@ namespace StudentManagementSystem.WebUI.Controllers
         }
         protected bool IsStudentSelected { get { return SelectedStudent != null; } }
 
-        protected void SetSelectedStudent(StudentInformationDto studentInfoModel)
+        protected void SetSelectedStudent(StudentSearchResultDto studentInfoModel)
         {
             SelectedStudent = studentInfoModel;
         }

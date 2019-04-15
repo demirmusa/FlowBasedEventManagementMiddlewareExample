@@ -6,6 +6,7 @@ namespace StudentManagementSystem.Business.Population.Dto
 {
     public class PopulationInformationDto
     {
+        public int ID { get; set; }
         public string Nationality { get; set; }
         public string MotherName { get; set; }
         public string FatherName { get; set; }

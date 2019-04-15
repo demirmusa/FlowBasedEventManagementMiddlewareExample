@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="EFCore.GenericRepository" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -13,9 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="EFCore.GenericRepository">
-      <HintPath>..\..\..\..\..\EFCoreGenericRepository\src\EFCore.GenericRepository\bin\Release\netstandard2.0\EFCore.GenericRepository.dll</HintPath>
-    </Reference>
     <Reference Include="Example.CoreShareds">
       <HintPath>..\..\..\Example.AllShareds\Example.CoreShareds\bin\Release\netstandard2.0\Example.CoreShareds.dll</HintPath>
     </Reference>

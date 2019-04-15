@@ -8,7 +8,6 @@ namespace StudentManagementSystem.Business.Cipher
         {
             throw new NotImplementedException();
         }
-
         public string Encrypt(string text)
         {
             throw new NotImplementedException();

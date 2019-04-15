@@ -3,6 +3,7 @@ using Example.CoreShareds;
 using StudentManagementSystem.Business.Cipher.Interfaces;
 using StudentManagementSystem.Business.People.Interfaces;
 using StudentManagementSystem.Business.UserBusiness.Dto;
+using StudentManagementSystem.Business.UserBusiness.Interface;
 using StudentManagementSystem.Data.DbEntities;
 using System;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace StudentManagementSystem.Business.UserBusiness
     /// <summary>
     /// work with service
     /// </summary>
-    public class UserService
+    public class UserService:IUserService
     {
         ISMSDbContextGenericRepository<User> _userRepo;
         IPeopleService _peopleService;

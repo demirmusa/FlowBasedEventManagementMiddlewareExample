@@ -21,19 +21,19 @@ namespace StudentManagementSystem.Business.People
             _personRepo = personRepo;
             _populationService = populationService;
         }
-        public async Task<GenericResult<bool>> AddPerson(PersonDto personDto)
+        public async Task<GenericResult<PersonDto>> AddPerson(PersonDto personDto)
         {
             try
             {
                 if (personDto.FKPopulationInformationID.HasValue && !await _populationService.IsPopulationExists(personDto.FKPopulationInformationID.Value))
-                    return GenericResult<bool>.UserSafeError("There is no population info with given id");
+                    return GenericResult<PersonDto>.UserSafeError("There is no population info with given id");
 
-                await _personRepo.InsertAsync(_mapper.Map<Person>(personDto));
-                return GenericResult<bool>.Success(true);
+                var newPerson = await _personRepo.InsertAsync(_mapper.Map<Person>(personDto));
+                return GenericResult<PersonDto>.Success(_mapper.Map<PersonDto>(newPerson));
             }
             catch (Exception e)
             {
-                return GenericResult<bool>.Error(e);
+                return GenericResult<PersonDto>.Error(e);
             }
         }
         public async Task<bool> IsPersonExists(int id) =>

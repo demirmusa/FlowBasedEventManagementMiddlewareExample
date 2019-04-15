@@ -40,11 +40,11 @@ namespace StudentManagementSystem.Business.StudentSearch
                 return GenericResult<List<(int id, string name, string foto)>>.Error(null, e);
             }
         }
-        public async Task<GenericResult<StudentInformationDto>> GetStudentInformationById(int id)
+        public async Task<GenericResult<StudentSearchResultDto>> GetStudentInformationById(int id)
         {
             try
             {
-                var student = await _studentInformationRepo.AsQueryable().Where(x => x.ID == id).Select(x => new StudentInformationDto
+                var student = await _studentInformationRepo.AsQueryable().Where(x => x.ID == id).Select(x => new StudentSearchResultDto
                 {
                     ID = x.ID,
                     StudentNumber = x.StudentNumber,
@@ -58,13 +58,13 @@ namespace StudentManagementSystem.Business.StudentSearch
                 }).FirstOrDefaultAsync();
 
                 if (student == null)
-                    return GenericResult<StudentInformationDto>.UserSafeError(null, "There is no student with given id");
+                    return GenericResult<StudentSearchResultDto>.UserSafeError(null, "There is no student with given id");
 
-                return GenericResult<StudentInformationDto>.Success(student);
+                return GenericResult<StudentSearchResultDto>.Success(student);
             }
             catch (Exception e)
             {
-                return GenericResult<StudentInformationDto>.Error(null, e);
+                return GenericResult<StudentSearchResultDto>.Error(null, e);
             }
 
         }
