@@ -27,12 +27,6 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\StudentManagementSystem.Business\StudentManagementSystem.BLL.csproj" />
-    <ProjectReference Include="..\StudentManagementSystem.Data\StudentManagementSystem.DAL.csproj" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <Reference Include="EventManager.Core">
       <HintPath>..\..\..\DllReferences\EventManager.Core.dll</HintPath>
     </Reference>
@@ -60,6 +54,12 @@
     <Folder Include="Areas\StudentDashboard\Controllers\" />
     <Folder Include="Areas\StudentDashboard\Data\" />
     <Folder Include="Areas\StudentDashboard\Models\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\StudentManagementSystem.BLL\StudentManagementSystem.BLL.csproj" />
+    <ProjectReference Include="..\StudentManagementSystem.DAL\StudentManagementSystem.DAL.csproj" />
   </ItemGroup>
 
 </Project>
