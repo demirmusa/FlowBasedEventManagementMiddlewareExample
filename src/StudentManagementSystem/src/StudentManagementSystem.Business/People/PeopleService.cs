@@ -12,9 +12,9 @@ namespace StudentManagementSystem.Business.People
 {
     public class PeopleService : IPeopleService
     {
-        ISMSDbContextGenericRepository<Person> _personRepo;
-        IPopulationService _populationService;
-        IMapper _mapper;
+        readonly ISMSDbContextGenericRepository<Person> _personRepo;
+        readonly IPopulationService _populationService;
+        readonly IMapper _mapper;
         public PeopleService(ISMSDbContextGenericRepository<Person> personRepo, IPopulationService populationService, IMapper mapper)
         {
             _mapper = mapper;
@@ -25,8 +25,14 @@ namespace StudentManagementSystem.Business.People
         {
             try
             {
-                if (personDto.FKPopulationInformationID.HasValue && !await _populationService.IsPopulationExists(personDto.FKPopulationInformationID.Value))
-                    return GenericResult<PersonDto>.UserSafeError("There is no population info with given id");
+                if (personDto.FKPopulationInformationID.HasValue)
+                {
+                    var isPopulationExists = (await _populationService.IsPopulationExists(personDto.FKPopulationInformationID.Value));
+                    if (!isPopulationExists.IsSucceed)
+                        return GenericResult<PersonDto>.UserSafeError("An error occurred when requesting population.Errors: " + isPopulationExists.GetAllMessage());
+                    else if (!isPopulationExists.Data)
+                        return GenericResult<PersonDto>.UserSafeError("There is no population info with given id");
+                }
 
                 var newPerson = await _personRepo.InsertAsync(_mapper.Map<Person>(personDto));
                 return GenericResult<PersonDto>.Success(_mapper.Map<PersonDto>(newPerson));

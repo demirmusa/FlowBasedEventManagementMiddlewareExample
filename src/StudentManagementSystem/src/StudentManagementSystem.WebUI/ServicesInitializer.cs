@@ -50,17 +50,11 @@ namespace StudentManagementSystem.WebUI
                .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
                .ForMember(m => m.User, opt => opt.Ignore())
                .ReverseMap();
-            CreateMap<PopulationInformationDto, PopulationInformation>()
-            .ForMember(m => m.CreationTime, opt => opt.Ignore())
-            .ForMember(m => m.Deleted, opt => opt.Ignore())
-            .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
-            .ReverseMap();
 
             CreateMap<PersonDto, Person>(MemberList.Destination)
             .ForMember(m => m.CreationTime, opt => opt.Ignore())
             .ForMember(m => m.Deleted, opt => opt.Ignore())
             .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
-            .ForMember(m => m.PopulationInformation, opt => opt.Ignore())
             .ReverseMap();
 
             //CreateMap<NewUserDto, User>(MemberList.Destination)

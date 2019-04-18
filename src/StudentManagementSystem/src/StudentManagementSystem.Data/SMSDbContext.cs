@@ -10,7 +10,6 @@ namespace StudentManagementSystem.Data
     {
         public DbSet<CourseInformation> CourseInformations { get; set; }
         public DbSet<Person> Persons { get; set; }
-        public DbSet<PopulationInformation> PopulationInformations { get; set; }
         public DbSet<StudentCourseJunction> StudentCourseJunctions { get; set; }
         public DbSet<StudentCourseScore> StudentCourseScores { get; set; }
         public DbSet<StudentInformation> StudentInformations { get; set; }

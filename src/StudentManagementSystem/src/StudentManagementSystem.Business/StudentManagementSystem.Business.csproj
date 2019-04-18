@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,14 +6,38 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
-    <PackageReference Include="EFCore.GenericRepository" Version="1.0.2" />
+    <PackageReference Include="EFCore.GenericRepository" Version="1.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\StudentManagementSystem.EMEvents\StudentManagementSystem.EMEvents.csproj" />
     <ProjectReference Include="..\StudentManagementSystem.Data\StudentManagementSystem.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+   
+    <Reference Include="EventManager.Core">
+      <HintPath>..\..\..\DllReferences\EventManager.Core.dll</HintPath>
+    </Reference>
+   
+    <Reference Include="EventManager.DefaultManager">
+      <HintPath>..\..\..\DllReferences\EventManager.DefaultManager.dll</HintPath>
+    </Reference>
+   
+    <Reference Include="EventManager.EventChecker">
+      <HintPath>..\..\..\DllReferences\EventManager.EventChecker.dll</HintPath>
+    </Reference>
+   
+    <Reference Include="EventManager.EventChecker.SQL">
+      <HintPath>..\..\..\DllReferences\EventManager.EventChecker.SQL.dll</HintPath>
+    </Reference>
+   
+    <Reference Include="EventManager.Shared">
+      <HintPath>..\..\..\DllReferences\EventManager.Shared.dll</HintPath>
+    </Reference>
+   
     <Reference Include="Example.CoreShareds">
       <HintPath>..\..\..\Example.AllShareds\Example.CoreShareds\bin\Release\netstandard2.0\Example.CoreShareds.dll</HintPath>
     </Reference>

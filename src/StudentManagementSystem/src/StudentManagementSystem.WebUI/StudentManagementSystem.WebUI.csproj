@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -17,9 +17,12 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+	<PackageReference Include="RabbitMQ.Client" Version="5.1.0" />
   </ItemGroup>
 
 
@@ -30,6 +33,21 @@
 
 
   <ItemGroup>
+    <Reference Include="EventManager.Core">
+      <HintPath>..\..\..\DllReferences\EventManager.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EventManager.DefaultManager">
+      <HintPath>..\..\..\DllReferences\EventManager.DefaultManager.dll</HintPath>
+    </Reference>
+    <Reference Include="EventManager.EventChecker">
+      <HintPath>..\..\..\DllReferences\EventManager.EventChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="EventManager.EventChecker.SQL">
+      <HintPath>..\..\..\DllReferences\EventManager.EventChecker.SQL.dll</HintPath>
+    </Reference>
+    <Reference Include="EventManager.Shared">
+      <HintPath>..\..\..\DllReferences\EventManager.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="Example.CoreShareds">
       <HintPath>..\..\..\Example.AllShareds\Example.CoreShareds\bin\Release\netstandard2.0\Example.CoreShareds.dll</HintPath>
     </Reference>

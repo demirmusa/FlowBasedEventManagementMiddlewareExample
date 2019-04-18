@@ -13,8 +13,5 @@ namespace StudentManagementSystem.Data.DbEntities
         public string Name { get; set; }
         public string Surname { get; set; }
         public int? FKPopulationInformationID { get; set; }
-
-        [ForeignKey("FKPopulationInformationID")]
-        public virtual PopulationInformation PopulationInformation { get; set; }
     }
 }

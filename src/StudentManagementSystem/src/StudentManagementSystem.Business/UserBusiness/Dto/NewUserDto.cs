@@ -12,6 +12,5 @@ namespace StudentManagementSystem.Business.UserBusiness.Dto
         public string Password { get; set; }
         public string Email { get; set; }
         public PersonDto PersonDto { get; set; }
-
     }
 }

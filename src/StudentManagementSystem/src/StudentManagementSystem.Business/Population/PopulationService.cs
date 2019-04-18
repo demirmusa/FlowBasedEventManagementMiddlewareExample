@@ -1,41 +1,50 @@
 ﻿using AutoMapper;
 using Example.CoreShareds;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using StudentManagementSystem.Business.Population.Dto;
 using StudentManagementSystem.Business.Population.Interfaces;
 using StudentManagementSystem.Data.DbEntities;
 using System;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace StudentManagementSystem.Business.Population
 {
-    public class PopulationService : IPopulationService
+    public class PopulationService : BaseHttpClientService, IPopulationService
     {
-        ISMSDbContextGenericRepository<PopulationInformation> _populationRepo;
-        private IMapper _mapper;
-        public PopulationService(ISMSDbContextGenericRepository<PopulationInformation> populationRepo, IMapper mapper)
+        private readonly ServiceInformations _serviceInformations;
+
+        public PopulationService(
+            IHttpClientFactory httpClientFactory,
+            IOptions<ServiceInformations> serviceInformations
+            ) : base(httpClientFactory)
         {
-            _populationRepo = populationRepo;
-            _mapper = mapper;
+
+            if (serviceInformations.Value == null)
+                throw new Exception("Define service informations in appsetting.json");
+
+            this._serviceInformations = serviceInformations.Value;
         }
-        public async Task<GenericResult<PopulationInformationDto>> AddPopulationInfo(PopulationInformationDto informationDto)
-        {
-            try
+        public async Task<GenericResult<int>> AddPopulationInfo(PopulationInformationDto informationDto) =>
+            await RequestGenericResultReturnsEndPointAsync<int>((HttpClient client) =>
             {
-                var mappedEntity = _mapper.Map<PopulationInformation>(informationDto);
-                var newPopulation = await _populationRepo.InsertAsync(mappedEntity);
-                return GenericResult<PopulationInformationDto>.Success(_mapper.Map<PopulationInformationDto>(newPopulation));
-            }
-            catch (Exception e)
-            {
-                return GenericResult<PopulationInformationDto>.Error(e);
-            }
-        }
-        public async Task<bool> IsPopulationExists(int id) =>
-             await _populationRepo.AsQueryable().AnyAsync(x => x.ID == id);
+                return client.PostAsync(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/AddNew",
+                                         new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(informationDto)));
+            });
 
 
+        public async Task<GenericResult<bool>> IsPopulationExists(int id) =>
+            await RequestGenericResultReturnsEndPointAsync<bool>((HttpClient client) =>
+            {
+                return client.GetAsync(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/Exists/" + id);
+            });
+
+        public async Task<GenericResult<bool>> Delete(int id) =>
+            await RequestGenericResultReturnsEndPointAsync<bool>((HttpClient client) =>
+             {
+                 return client.DeleteAsync(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/Delete/" + id);
+             });
     }
-  
 }
