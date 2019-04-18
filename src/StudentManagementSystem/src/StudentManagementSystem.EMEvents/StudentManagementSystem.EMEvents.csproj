@@ -6,10 +6,10 @@
 
   <ItemGroup>
     <Reference Include="EventManager.Core">
-      <HintPath>..\..\DllReferences\EventManager.Core.dll</HintPath>
+      <HintPath>..\..\..\DllReferences\EventManager.Core.dll</HintPath>
     </Reference>
     <Reference Include="EventManager.Shared">
-      <HintPath>..\..\DllReferences\EventManager.Shared.dll</HintPath>
+      <HintPath>..\..\..\DllReferences\EventManager.Shared.dll</HintPath>
     </Reference>
   </ItemGroup>
 

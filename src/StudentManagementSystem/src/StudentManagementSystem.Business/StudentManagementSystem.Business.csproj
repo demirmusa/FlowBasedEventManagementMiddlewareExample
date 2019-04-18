@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\StudentManagementSystem.EMEvents\StudentManagementSystem.EMEvents.csproj" />
     <ProjectReference Include="..\StudentManagementSystem.Data\StudentManagementSystem.Data.csproj" />
+    <ProjectReference Include="..\StudentManagementSystem.EMEvents\StudentManagementSystem.EMEvents.csproj" />
   </ItemGroup>
 
   <ItemGroup>
