@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using Example.CoreShareds;
 using Microsoft.EntityFrameworkCore;
-using StudentManagementSystem.Business.People.Dto;
-using StudentManagementSystem.Business.People.Interfaces;
-using StudentManagementSystem.Business.Population.Interfaces;
-using StudentManagementSystem.Data.DbEntities;
+using StudentManagementSystem.BLL.People.Dto;
+using StudentManagementSystem.BLL.People.Interfaces;
+using StudentManagementSystem.BLL.Population.Interfaces;
+using StudentManagementSystem.DAL.DbEntities;
 using System;
 using System.Threading.Tasks;
 
-namespace StudentManagementSystem.Business.People
+namespace StudentManagementSystem.BLL.People
 {
     public class PeopleService : IPeopleService
     {

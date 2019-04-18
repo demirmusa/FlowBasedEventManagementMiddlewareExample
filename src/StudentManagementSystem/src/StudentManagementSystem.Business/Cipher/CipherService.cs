@@ -1,6 +1,6 @@
-﻿using StudentManagementSystem.Business.Cipher.Interfaces;
+﻿using StudentManagementSystem.BLL.Cipher.Interfaces;
 using System;
-namespace StudentManagementSystem.Business.Cipher
+namespace StudentManagementSystem.BLL.Cipher
 {
     /// <summary>
     /// they return text because its an example

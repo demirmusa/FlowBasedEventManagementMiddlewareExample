@@ -2,19 +2,17 @@
 using EventManager.Core.Interfaces;
 using Example.CoreShareds;
 using Microsoft.EntityFrameworkCore;
-using StudentManagementSystem.Business.People.Dto;
-using StudentManagementSystem.Business.People.Interfaces;
-using StudentManagementSystem.Business.Population.Interfaces;
-using StudentManagementSystem.Business.StudentBusiness.Dto;
-using StudentManagementSystem.Business.StudentBusiness.Interfaces;
-using StudentManagementSystem.Business.UserBusiness.Dto;
-using StudentManagementSystem.Business.UserBusiness.Interface;
-using StudentManagementSystem.Data.DbEntities;
+using StudentManagementSystem.BLL.People.Interfaces;
+using StudentManagementSystem.BLL.Population.Interfaces;
+using StudentManagementSystem.BLL.StudentBusiness.Dto;
+using StudentManagementSystem.BLL.StudentBusiness.Interfaces;
+using StudentManagementSystem.BLL.UserBusiness.Interface;
+using StudentManagementSystem.DAL.DbEntities;
 using System;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace StudentManagementSystem.Business.StudentBusiness
+namespace StudentManagementSystem.BLL.StudentBusiness
 {
     public class StudentRegistrationService : IStudentRegistrationService
     {

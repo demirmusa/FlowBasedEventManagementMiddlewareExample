@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Example.CoreShareds;
 using Microsoft.AspNetCore.Mvc;
-using StudentManagementSystem.Business.StudentBusiness.Dto;
-using StudentManagementSystem.Business.StudentBusiness.Interfaces;
+using StudentManagementSystem.BLL.StudentBusiness.Dto;
+using StudentManagementSystem.BLL.StudentBusiness.Interfaces;
 
 namespace StudentManagementSystem.WebUI.Areas.Management.Controllers
 {

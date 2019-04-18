@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StudentManagementSystem.Data.DbEntities;
+using StudentManagementSystem.DAL.DbEntities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentManagementSystem.Data
+namespace StudentManagementSystem.DAL
 {
     public class SMSDbContext : DbContext
     {

@@ -1,14 +1,14 @@
 ﻿using Example.CoreShareds;
 using Microsoft.EntityFrameworkCore;
-using StudentManagementSystem.Business.StudentSearch.Dto;
-using StudentManagementSystem.Business.StudentSearch.interfaces;
-using StudentManagementSystem.Data.DbEntities;
+using StudentManagementSystem.BLL.StudentSearch.Dto;
+using StudentManagementSystem.BLL.StudentSearch.interfaces;
+using StudentManagementSystem.DAL.DbEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StudentManagementSystem.Business.StudentSearch
+namespace StudentManagementSystem.BLL.StudentSearch
 {
     public class StudentSearchService : IStudentSearchService
     {

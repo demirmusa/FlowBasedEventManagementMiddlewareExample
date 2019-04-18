@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace StudentManagementSystem.Data.Migrations
+namespace StudentManagementSystem.DAL.Migrations
 {
     public partial class personsurname : Migration
     {

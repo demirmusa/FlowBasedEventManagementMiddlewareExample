@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using StudentManagementSystem.Data;
+using StudentManagementSystem.DAL;
 
-namespace StudentManagementSystem.Data.Migrations
+namespace StudentManagementSystem.DAL.Migrations
 {
     [DbContext(typeof(SMSDbContext))]
     partial class SMSDbContextModelSnapshot : ModelSnapshot
@@ -19,7 +19,7 @@ namespace StudentManagementSystem.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.CourseInformation", b =>
+            modelBuilder.Entity("StudentManagementSystem.DAL.DbEntities.CourseInformation", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -46,7 +46,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("CourseInformations");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.Person", b =>
+            modelBuilder.Entity("StudentManagementSystem.DAL.DbEntities.Person", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -71,7 +71,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("Persons");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.StudentCourseJunction", b =>
+            modelBuilder.Entity("StudentManagementSystem.DAL.DbEntities.StudentCourseJunction", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -90,7 +90,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("StudentCourseJunctions");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.StudentCourseScore", b =>
+            modelBuilder.Entity("StudentManagementSystem.DAL.DbEntities.StudentCourseScore", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -115,7 +115,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("StudentCourseScores");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.StudentInformation", b =>
+            modelBuilder.Entity("StudentManagementSystem.DAL.DbEntities.StudentInformation", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -144,7 +144,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("StudentInformations");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.Teacher", b =>
+            modelBuilder.Entity("StudentManagementSystem.DAL.DbEntities.Teacher", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -167,7 +167,7 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.User", b =>
+            modelBuilder.Entity("StudentManagementSystem.DAL.DbEntities.User", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -194,33 +194,33 @@ namespace StudentManagementSystem.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.CourseInformation", b =>
+            modelBuilder.Entity("StudentManagementSystem.DAL.DbEntities.CourseInformation", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Data.DbEntities.Teacher", "Teacher")
+                    b.HasOne("StudentManagementSystem.DAL.DbEntities.Teacher", "Teacher")
                         .WithMany()
                         .HasForeignKey("FKTeacherID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.StudentInformation", b =>
+            modelBuilder.Entity("StudentManagementSystem.DAL.DbEntities.StudentInformation", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Data.DbEntities.User", "User")
+                    b.HasOne("StudentManagementSystem.DAL.DbEntities.User", "User")
                         .WithMany()
                         .HasForeignKey("FKUserID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.Teacher", b =>
+            modelBuilder.Entity("StudentManagementSystem.DAL.DbEntities.Teacher", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Data.DbEntities.User", "User")
+                    b.HasOne("StudentManagementSystem.DAL.DbEntities.User", "User")
                         .WithMany()
                         .HasForeignKey("FKUserID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("StudentManagementSystem.Data.DbEntities.User", b =>
+            modelBuilder.Entity("StudentManagementSystem.DAL.DbEntities.User", b =>
                 {
-                    b.HasOne("StudentManagementSystem.Data.DbEntities.Person", "Person")
+                    b.HasOne("StudentManagementSystem.DAL.DbEntities.Person", "Person")
                         .WithMany()
                         .HasForeignKey("FKPersonID")
                         .OnDelete(DeleteBehavior.Cascade);

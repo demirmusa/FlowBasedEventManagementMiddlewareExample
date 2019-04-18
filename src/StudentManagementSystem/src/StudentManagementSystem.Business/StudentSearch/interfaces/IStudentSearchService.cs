@@ -1,11 +1,11 @@
 ﻿using Example.CoreShareds;
-using StudentManagementSystem.Business.StudentSearch.Dto;
+using StudentManagementSystem.BLL.StudentSearch.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentManagementSystem.Business.StudentSearch.interfaces
+namespace StudentManagementSystem.BLL.StudentSearch.interfaces
 {
     public interface IStudentSearchService
     {

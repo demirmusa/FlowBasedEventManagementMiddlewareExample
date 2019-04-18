@@ -1,9 +1,9 @@
-﻿using StudentManagementSystem.Business.People.Dto;
+﻿using StudentManagementSystem.BLL.People.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentManagementSystem.Business.UserBusiness.Dto
+namespace StudentManagementSystem.BLL.UserBusiness.Dto
 {
     public class NewUserDto
     {

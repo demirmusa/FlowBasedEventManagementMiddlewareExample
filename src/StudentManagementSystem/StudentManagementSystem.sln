@@ -7,13 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F2FCDAB4-2F8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagementSystem.WebUI", "src\StudentManagementSystem.WebUI\StudentManagementSystem.WebUI.csproj", "{6BD3AD52-D33F-4D71-B088-FBFD6789811C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagementSystem.Business", "src\StudentManagementSystem.Business\StudentManagementSystem.Business.csproj", "{0CC67962-FDB0-4A56-9506-BCF42970FF7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagementSystem.BLL", "src\StudentManagementSystem.Business\StudentManagementSystem.BLL.csproj", "{0CC67962-FDB0-4A56-9506-BCF42970FF7C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9E125C65-C384-4F20-B532-1D11429F376D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagementNUnitTest", "test\StudentManagementNUnitTest\StudentManagementNUnitTest.csproj", "{812F25C1-AF3E-4E57-AA1B-7FA46DE6BC8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagementSystem.Data", "src\StudentManagementSystem.Data\StudentManagementSystem.Data.csproj", "{67A3F023-EBC4-45FC-83DD-5DA6A82DDCA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagementSystem.DAL", "src\StudentManagementSystem.Data\StudentManagementSystem.DAL.csproj", "{67A3F023-EBC4-45FC-83DD-5DA6A82DDCA6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagementSystem.EMEvents", "src\StudentManagementSystem.EMEvents\StudentManagementSystem.EMEvents.csproj", "{3A09E16E-9796-4588-B913-B204B56308B1}"
 EndProject

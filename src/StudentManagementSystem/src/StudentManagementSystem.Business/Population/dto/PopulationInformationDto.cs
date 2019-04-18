@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentManagementSystem.Business.Population.Dto
+namespace StudentManagementSystem.BLL.Population.Dto
 {
     public class PopulationInformationDto
     {

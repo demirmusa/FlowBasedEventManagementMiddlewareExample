@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentManagementSystem.Business
+namespace StudentManagementSystem.BLL
 {
     public abstract class BaseHttpClientService
     {

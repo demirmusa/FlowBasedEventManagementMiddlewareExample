@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using EFCore.GenericRepository;
 using Microsoft.Extensions.DependencyInjection;
-using StudentManagementSystem.Business;
-using StudentManagementSystem.Business.People.Dto;
-using StudentManagementSystem.Business.Population.Dto;
-using StudentManagementSystem.Data.DbEntities;
+using StudentManagementSystem.BLL;
+using StudentManagementSystem.BLL.People.Dto;
+using StudentManagementSystem.BLL.Population.Dto;
+using StudentManagementSystem.DAL.DbEntities;
 using AutoMapper.Mappers.Internal;
-using StudentManagementSystem.Business.StudentBusiness;
-using StudentManagementSystem.Business.UserBusiness.Dto;
-using StudentManagementSystem.Business.StudentBusiness.Dto;
+using StudentManagementSystem.BLL.StudentBusiness;
+using StudentManagementSystem.BLL.UserBusiness.Dto;
+using StudentManagementSystem.BLL.StudentBusiness.Dto;
 
 namespace StudentManagementSystem.WebUI
 {
@@ -22,13 +22,13 @@ namespace StudentManagementSystem.WebUI
 
             services.AddScoped(typeof(ISMSDbContextGenericRepository<>), typeof(SMSDbContextGenericRepository<>));
 
-            services.AddTransient<Business.StudentSearch.interfaces.IStudentSearchService, Business.StudentSearch.StudentSearchService>();
+            services.AddTransient<BLL.StudentSearch.interfaces.IStudentSearchService, BLL.StudentSearch.StudentSearchService>();
 
-            services.AddTransient<Business.UserBusiness.Interface.IUserService, Business.UserBusiness.UserService>();
-            services.AddTransient<Business.People.Interfaces.IPeopleService, Business.People.PeopleService>();
-            services.AddTransient<Business.Cipher.Interfaces.ICipherService, Business.Cipher.CipherService>();
-            services.AddTransient<Business.Population.Interfaces.IPopulationService, Business.Population.PopulationService>();
-            services.AddTransient<Business.StudentBusiness.Interfaces.IStudentRegistrationService, StudentRegistrationService>();
+            services.AddTransient<BLL.UserBusiness.Interface.IUserService, BLL.UserBusiness.UserService>();
+            services.AddTransient<BLL.People.Interfaces.IPeopleService, BLL.People.PeopleService>();
+            services.AddTransient<BLL.Cipher.Interfaces.ICipherService, BLL.Cipher.CipherService>();
+            services.AddTransient<BLL.Population.Interfaces.IPopulationService, BLL.Population.PopulationService>();
+            services.AddTransient<BLL.StudentBusiness.Interfaces.IStudentRegistrationService, StudentRegistrationService>();
 
         }
 

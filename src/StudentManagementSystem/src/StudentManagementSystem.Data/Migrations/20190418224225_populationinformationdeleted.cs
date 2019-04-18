@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace StudentManagementSystem.Data.Migrations
+namespace StudentManagementSystem.DAL.Migrations
 {
     public partial class populationinformationdeleted : Migration
     {

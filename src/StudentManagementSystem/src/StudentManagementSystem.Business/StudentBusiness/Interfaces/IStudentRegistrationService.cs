@@ -1,11 +1,11 @@
 ﻿using Example.CoreShareds;
-using StudentManagementSystem.Business.StudentBusiness.Dto;
+using StudentManagementSystem.BLL.StudentBusiness.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentManagementSystem.Business.StudentBusiness.Interfaces
+namespace StudentManagementSystem.BLL.StudentBusiness.Interfaces
 {
     public interface IStudentRegistrationService
     {

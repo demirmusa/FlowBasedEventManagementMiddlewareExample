@@ -1,8 +1,8 @@
 ﻿using EFCore.GenericRepository;
 using EFCore.GenericRepository.interfaces;
-using StudentManagementSystem.Data;
+using StudentManagementSystem.DAL;
 
-namespace StudentManagementSystem.Business
+namespace StudentManagementSystem.BLL
 {
     public interface ISMSDbContextGenericRepository<TEntity> : IGenericRepository<SMSDbContext, TEntity>
         where TEntity : BaseDbEntity

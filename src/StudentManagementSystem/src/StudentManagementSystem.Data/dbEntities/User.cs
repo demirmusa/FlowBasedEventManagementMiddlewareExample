@@ -1,7 +1,7 @@
 ﻿using EFCore.GenericRepository;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace StudentManagementSystem.Data.DbEntities
+namespace StudentManagementSystem.DAL.DbEntities
 {
     public class User : SoftDeletableDbEntity
     {

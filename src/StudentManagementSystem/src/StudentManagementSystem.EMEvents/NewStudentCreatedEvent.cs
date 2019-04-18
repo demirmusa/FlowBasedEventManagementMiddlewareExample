@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentManagementSystem.Business.StudentBusiness.Dto
+namespace StudentManagementSystem.BLL.StudentBusiness.Dto
 {
     [EMEventInfo(eventName: "NewStudentCreatedEvent")]
     public class NewStudentCreatedEvent : IEMEvent

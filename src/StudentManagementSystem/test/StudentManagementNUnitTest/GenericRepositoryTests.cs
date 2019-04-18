@@ -3,9 +3,9 @@ using EFCore.GenericRepository.interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
-using StudentManagementSystem.Business;
-using StudentManagementSystem.Data;
-using StudentManagementSystem.Data.DbEntities;
+using StudentManagementSystem.BLL;
+using StudentManagementSystem.DAL;
+using StudentManagementSystem.DAL.DbEntities;
 using System;
 using System.Linq;
 

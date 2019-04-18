@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Example.CoreShareds;
 using Microsoft.AspNetCore.Mvc;
-using StudentManagementSystem.Business.StudentSearch.interfaces;
+using StudentManagementSystem.BLL.StudentSearch.interfaces;
 using StudentManagementSystem.WebUI.Models;
 
 namespace StudentManagementSystem.WebUI.Controllers

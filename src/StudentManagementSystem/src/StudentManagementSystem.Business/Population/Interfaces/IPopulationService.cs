@@ -1,11 +1,11 @@
 ﻿using Example.CoreShareds;
-using StudentManagementSystem.Business.Population.Dto;
+using StudentManagementSystem.BLL.Population.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentManagementSystem.Business.Population.Interfaces
+namespace StudentManagementSystem.BLL.Population.Interfaces
 {
     public interface IPopulationService
     {

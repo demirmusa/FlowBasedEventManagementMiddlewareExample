@@ -1,8 +1,8 @@
 ﻿using Example.CoreShareds;
-using StudentManagementSystem.Business.People.Dto;
+using StudentManagementSystem.BLL.People.Dto;
 using System.Threading.Tasks;
 
-namespace StudentManagementSystem.Business.People.Interfaces
+namespace StudentManagementSystem.BLL.People.Interfaces
 {
     public interface IPeopleService
     {

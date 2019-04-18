@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using Example.CoreShareds;
-using StudentManagementSystem.Business.Cipher.Interfaces;
-using StudentManagementSystem.Business.People.Interfaces;
-using StudentManagementSystem.Business.UserBusiness.Dto;
-using StudentManagementSystem.Business.UserBusiness.Interface;
-using StudentManagementSystem.Data.DbEntities;
+using StudentManagementSystem.BLL.Cipher.Interfaces;
+using StudentManagementSystem.BLL.People.Interfaces;
+using StudentManagementSystem.BLL.UserBusiness.Dto;
+using StudentManagementSystem.BLL.UserBusiness.Interface;
+using StudentManagementSystem.DAL.DbEntities;
 using System;
 using System.Threading.Tasks;
 
-namespace StudentManagementSystem.Business.UserBusiness
+namespace StudentManagementSystem.BLL.UserBusiness
 {
     /// <summary>
     /// work with service

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentManagementSystem.Business
+namespace StudentManagementSystem.BLL
 {
     public class ServiceInformations
     {

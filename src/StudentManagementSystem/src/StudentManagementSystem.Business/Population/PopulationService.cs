@@ -2,15 +2,15 @@
 using Example.CoreShareds;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using StudentManagementSystem.Business.Population.Dto;
-using StudentManagementSystem.Business.Population.Interfaces;
-using StudentManagementSystem.Data.DbEntities;
+using StudentManagementSystem.BLL.Population.Dto;
+using StudentManagementSystem.BLL.Population.Interfaces;
+using StudentManagementSystem.DAL.DbEntities;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace StudentManagementSystem.Business.Population
+namespace StudentManagementSystem.BLL.Population
 {
     public class PopulationService : BaseHttpClientService, IPopulationService
     {

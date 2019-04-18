@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentManagementSystem.Business.Cipher.Interfaces
+namespace StudentManagementSystem.BLL.Cipher.Interfaces
 {
     public interface ICipherService
     {

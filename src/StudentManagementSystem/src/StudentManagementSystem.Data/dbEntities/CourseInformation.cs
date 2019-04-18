@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace StudentManagementSystem.Data.DbEntities
+namespace StudentManagementSystem.DAL.DbEntities
 {
     public class CourseInformation : SoftUpdatableDbEntity
     {

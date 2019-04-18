@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentManagementSystem.Business.StudentSearch.Dto
+namespace StudentManagementSystem.BLL.StudentSearch.Dto
 {
     public class StudentSearchResultDto
     {

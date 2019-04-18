@@ -1,10 +1,10 @@
 ﻿using EFCore.GenericRepository;
-using StudentManagementSystem.Data;
+using StudentManagementSystem.DAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentManagementSystem.Business
+namespace StudentManagementSystem.BLL
 {
     public class SMSDbContextGenericRepository<TEntity> : GenericRepository<SMSDbContext, TEntity>, ISMSDbContextGenericRepository<TEntity>
         where TEntity : BaseDbEntity

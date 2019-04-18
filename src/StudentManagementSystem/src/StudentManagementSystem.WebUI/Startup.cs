@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
-using StudentManagementSystem.Data;
+using StudentManagementSystem.DAL;
 using EventManager.DefaultManager.Extensions;
 using EventManager.EventChecker.SQL;
-using StudentManagementSystem.Business;
+using StudentManagementSystem.BLL;
 
 namespace StudentManagementSystem.WebUI
 {
