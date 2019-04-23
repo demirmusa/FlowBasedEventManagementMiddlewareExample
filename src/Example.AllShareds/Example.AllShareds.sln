@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.CoreShareds", "Example.CoreShareds\Example.CoreShareds.csproj", "{403B9D75-D1EB-4BD9-928B-C4A496AE7221}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.GenericServiceControllers", "Example.GenericServiceControllers\Example.GenericServiceControllers.csproj", "{0376CA33-9E13-475F-906E-6A2D1FD2776D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{403B9D75-D1EB-4BD9-928B-C4A496AE7221}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{403B9D75-D1EB-4BD9-928B-C4A496AE7221}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{403B9D75-D1EB-4BD9-928B-C4A496AE7221}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0376CA33-9E13-475F-906E-6A2D1FD2776D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0376CA33-9E13-475F-906E-6A2D1FD2776D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0376CA33-9E13-475F-906E-6A2D1FD2776D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0376CA33-9E13-475F-906E-6A2D1FD2776D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

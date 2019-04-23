@@ -47,6 +47,7 @@ namespace StudentManagementSystem.BLL.StudentBusiness
             }
             using (var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
+                int populationId = 0;
                 try
                 {
                     if (await _studentRepo.AsQueryable().AnyAsync(x => x.StudentNumber == newStudentInformationDto.StudentNumber))
@@ -56,8 +57,10 @@ namespace StudentManagementSystem.BLL.StudentBusiness
                     }
                     newStudentInformationDto.RegistrationDate = DateTime.Now;
                     var newPopulationResult = await _populationService.AddPopulationInfo(newStudentInformationDto.NewUserDto.PersonDto.PopulationInformationDto);
-                    if (newPopulationResult.IsSucceed)
+                    if (newPopulationResult.IsSucceed && newPopulationResult.Data != 0)
                     {
+                        populationId = newPopulationResult.Data;
+
                         newStudentInformationDto.NewUserDto.PersonDto.FKPopulationInformationID = newPopulationResult.Data;
                         var newPersonResult = await _peopleService.AddPerson(newStudentInformationDto.NewUserDto.PersonDto);
                         if (newPersonResult.IsSucceed)
@@ -102,6 +105,10 @@ namespace StudentManagementSystem.BLL.StudentBusiness
                 catch (Exception e)
                 {
                     transaction.Dispose();
+
+                    if (populationId != 0)
+                        await _populationService.Delete(populationId);
+
                     return GenericResult<StudentInformationDto>.Error(e);
                 }
             }

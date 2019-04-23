@@ -2,28 +2,35 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <UserSecretsId>a10496c4-3a33-4058-990c-a216b8f1c965</UserSecretsId>
+    <RuntimeFrameworkName>Microsoft.AspNetCore.App</RuntimeFrameworkName>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <UserSecretsId>dc8296f3-ef2a-45f9-aea9-408c36a70422</UserSecretsId>
+	<PreserveCompilationContext>false</PreserveCompilationContext>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="EFCore.GenericRepository" Version="1.0.5" />
+    <PackageReference Include="EFCore.GenericRepository" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PopulationService.BLL\PopulationService.BLL.csproj" />
+    <ProjectReference Include="..\CMS.BLL\CMS.BLL.csproj" />
+    <ProjectReference Include="..\CMS.DAL\CMS.DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Example.CoreShareds">
       <HintPath>..\..\Example.AllShareds\Example.CoreShareds\bin\Release\netstandard2.0\Example.CoreShareds.dll</HintPath>
+    </Reference>
+    <Reference Include="Example.GenericServiceControllers">
+      <HintPath>..\..\Example.AllShareds\Example.GenericServiceControllers\bin\Release\netstandard2.0\Example.GenericServiceControllers.dll</HintPath>
     </Reference>
   </ItemGroup>
 

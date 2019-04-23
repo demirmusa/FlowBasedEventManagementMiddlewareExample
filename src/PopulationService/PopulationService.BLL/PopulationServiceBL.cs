@@ -12,12 +12,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PopulationService.BLL
 {
-    public class PopulationService : IPopulationService
+    public class PopulationServiceBL : IPopulationService
     {
 
         readonly IGenericRepository<PopulationDbContext, PopulationInformation> _populationRepo;
         private IMapper _mapper;
-        public PopulationService(IGenericRepository<PopulationDbContext, PopulationInformation> populationRepo, IMapper mapper)
+        public PopulationServiceBL(IGenericRepository<PopulationDbContext, PopulationInformation> populationRepo, IMapper mapper)
         {
             _populationRepo = populationRepo;
             _mapper = mapper;

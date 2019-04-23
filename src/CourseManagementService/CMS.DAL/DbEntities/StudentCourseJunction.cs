@@ -1,14 +1,13 @@
 ﻿using EFCore.GenericRepository;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
-namespace StudentManagementSystem.DAL.DbEntities
+namespace CMS.DAL.DbEntities
 {
     public class StudentCourseJunction : BaseDbEntity
     {
         public int FKStudentID { get; set; }
         public int FKCourseID { get; set; }
+        [ForeignKey("FKCourseID ")]
+        public virtual CourseInformation CourseInformation { get; set; }
     }
 }

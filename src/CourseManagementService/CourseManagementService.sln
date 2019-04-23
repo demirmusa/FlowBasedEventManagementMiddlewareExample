@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.BLL", "CMS.BLL\CMS.BLL.csproj", "{D3DBAA1E-CCBB-4A67-B975-C8C9B7C273B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.DAL", "CMS.DAL\CMS.DAL.csproj", "{BA37CEF6-3C77-45A5-870F-F9549CD02C36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Api", "CMS.Api\CMS.Api.csproj", "{E7C3A60A-91AB-4841-AFAD-9DF2CE924594}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3DBAA1E-CCBB-4A67-B975-C8C9B7C273B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3DBAA1E-CCBB-4A67-B975-C8C9B7C273B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3DBAA1E-CCBB-4A67-B975-C8C9B7C273B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3DBAA1E-CCBB-4A67-B975-C8C9B7C273B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA37CEF6-3C77-45A5-870F-F9549CD02C36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA37CEF6-3C77-45A5-870F-F9549CD02C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA37CEF6-3C77-45A5-870F-F9549CD02C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA37CEF6-3C77-45A5-870F-F9549CD02C36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7C3A60A-91AB-4841-AFAD-9DF2CE924594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7C3A60A-91AB-4841-AFAD-9DF2CE924594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7C3A60A-91AB-4841-AFAD-9DF2CE924594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7C3A60A-91AB-4841-AFAD-9DF2CE924594}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3B462FF9-A64D-4A4B-AAE3-90B220F3837A}
+	EndGlobalSection
+EndGlobal

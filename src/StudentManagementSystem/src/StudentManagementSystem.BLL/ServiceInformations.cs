@@ -7,6 +7,7 @@ namespace StudentManagementSystem.BLL
     public class ServiceInformations
     {
         public ServiceInformation PopulationInformationService { get; set; }
+        public ServiceInformation CourseManagementService { get; set; }
     }
     public class ServiceInformation
     {
