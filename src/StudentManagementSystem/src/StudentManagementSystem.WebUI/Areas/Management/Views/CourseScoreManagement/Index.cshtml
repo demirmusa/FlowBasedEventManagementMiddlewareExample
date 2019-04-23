@@ -2,46 +2,48 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <div class="col-md-6">
-<div class="x_panel  col-md-12">
-    <div class="x_title">
-        <h2>Courses By Student</h2>
-        <div class="clearfix"></div>
-    </div>
-    <div class="x_content">
-        <div class="col-md-12">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Teacher ID</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Data)
+    <div class="x_panel  col-md-12">
+        <div class="x_title">
+            <h2>Courses By Student</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="col-md-12">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Teacher ID</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Data)
                     {
                         <tr>
                             <td>@item.CourseTitle</td>
                             <td>@item.CourseDescription</td>
                             <td>@item.FKTeacherID</td>
-                            <td><button class="btn btn-xs btn-success" type="button" onclick="LoadCourseScores(@item.ID,'@item.CourseTitle')"><i class="fa fa-hand-o-up"></i></button></td>
+                            <td><button class="btn btn-sm btn-success" type="button" onclick="LoadCourseScores(@item.ID,'@System.Web.HttpUtility.UrlEncode(item.CourseTitle)')"><i class="fa fa-hand-o-up"></i></button></td>
                         </tr>
                     }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
 
+            </div>
+            <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
     </div>
-</div>
 </div>
 <div class="col-md-6">
     <div class="x_panel col-md-12" style="display: none" id="courseScoreDivPanel">
         <div class="x_title">
             <h2>Course "<span id="courseScoreTitle"></span>"  Scores</h2>
+            <div class="nav navbar-right panel_toolbox">
+                <button id="addNewBtn" class="btn btn-primary" data-toggle="global-modal" data-global-title="Add New Score" data-source="">Add New</button>
+            </div>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -49,20 +51,26 @@
 
             </div>
             <div class="clearfix"></div>
-            </div>
+        </div>
     </div>
-    </div>
+</div>
 
 
 
-    @section Scripts
-    {
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+
     <script>
+    
         function LoadCourseScores(id, title) {
             $("#courseScoreDivPanel").show();
             $("#courseScoreTitle").text(title);
 
             $("#courseScoreDiv").empty().load("/Management/CourseScoreManagement/CourseScoresForStudent?courseId=" + id);
+
+            $("#addNewBtn").attr("data-source",
+                "/Management/CourseScoreManagement/InsertScore?courseId=" + id + "&courseName=" + title);
         }
     </script>
-    }
+}

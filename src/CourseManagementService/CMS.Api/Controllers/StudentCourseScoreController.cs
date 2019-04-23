@@ -33,5 +33,19 @@ namespace CMS.Api.Controllers
                 return GenericResult<List<StudentCourseScoreListDto>>.UserSafeError("An error occurred");
             }
         }
+
+        public override async Task<ActionResult<GenericResult<StudentCourseScoreDto>>> Insert(StudentCourseScoreDto entityDto)
+        {
+            try
+            {
+                var result = await _service.Insert(entityDto);
+                return GenericResult<StudentCourseScoreDto>.Success(result);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }

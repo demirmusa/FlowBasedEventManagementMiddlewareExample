@@ -39,9 +39,10 @@ namespace CMS.BLL.StudentCourseScoreBusiness
 
             return await base.Insert(entityDto);
         }
-        //when we call update it will automaticaly audit it.(to same table. Other auditing options will be added)
-        public override async Task<StudentCourseScoreDto> Update(StudentCourseScoreDto entityDto)=>        
-             await Update(entityDto);
+        public override async Task<StudentCourseScoreDto> Update(StudentCourseScoreDto entityDto)
+        {
+            throw new NotImplementedException();
+        }        
         
     }
 }

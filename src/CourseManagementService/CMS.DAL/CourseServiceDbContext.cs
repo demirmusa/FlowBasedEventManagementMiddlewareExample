@@ -18,10 +18,6 @@ namespace CMS.DAL
             builder.Entity<StudentCourseJunction>()
                 .HasIndex(s => new { s.FKStudentID, s.FKCourseID })
                 .IsUnique();
-
-            builder.Entity<StudentCourseScore>()
-              .HasIndex(s => new { s.FKStudentID, s.FKCourseID, s.Deleted })
-              .IsUnique();
         }
     }
 }

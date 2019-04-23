@@ -25,7 +25,9 @@ namespace StudentManagementSystem.WebUI.Areas.Management.Controllers
         public async Task<ActionResult> RegisterNewStudent(NewStudentInformationDto newStudentInformationDto)
         {
             var registrationResult = await _studentRegistrationService.AddNewStudent(newStudentInformationDto);
-            return View(registrationResult.GetUserSafeResult<bool, StudentInformationDto>());
+            var userSafe = registrationResult.GetUserSafeResult();
+
+            return View("GenericResultView", userSafe.ConvertTo(userSafe.GetAllMessage()));
         }
     }
 }

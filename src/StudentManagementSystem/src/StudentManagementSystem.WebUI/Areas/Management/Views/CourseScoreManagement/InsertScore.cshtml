@@ -1,0 +1,39 @@
+﻿@model StudentManagementSystem.BLL.Courses.Dto.StudentCourseScoreDto
+@{
+    Layout = null;
+}
+<form asp-action="InsertScore" asp-area="Management" asp-controller="CourseScoreManagement" asp-antiforgery="true" id="newScoreForm">
+
+    @Html.Hidden("FKCourseID", ViewBag.CourseId.ToString(), null)
+
+    <div class="x_panel col-md-12">
+        <div class="x_title">
+            <h2>Course "<span>@ViewBag.CourseName</span>" - AddScore </h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3">
+                        Score <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6">
+                        <input asp-for="Score" required="required" class="form-control col-md-7 col-xs-12" type="number">
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-success pull-right" type="submit">Submit</button>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</form>
+<script>
+    $(function() {
+        // bind 'myForm' and provide a simple callback function
+        $('#newScoreForm').ajaxForm(function (result) {
+            $("#GlobalModal").modal("hide");
+            sms.toastGenericResult(result);
+            LoadCourseScores(@ViewBag.CourseId, '@ViewBag.CourseName');
+        });
+    });
+</script>

@@ -1,0 +1,31 @@
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model Example.CoreShareds.GenericResult<string>
+@using Example.CoreShareds
+@{
+    ViewData["Title"] = "RegisterNewStudent";
+}
+<div class="x_panel col-md-8 col-md-offset-2">
+    <div class="x_title">
+        <h2>Register Result</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="col-md-12">
+            <div class="alert"></div>
+            @if(Model.IsSucceed)
+            {
+            <div class="alert alert-success">@Html.Raw(Model.Data??"Process completed")</div>
+            }
+            else if(Model.EnumResultType==EnumResultType.UserSafeError)
+            {
+            <div class="alert alert-error">@Model.Data</div>
+            }
+            else {
+            <div class="alert alert-error">An error occurred</div>
+            }
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

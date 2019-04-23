@@ -14,6 +14,6 @@ namespace StudentManagementSystem.BLL.Courses.Interfaces
 
 
       Task<GenericResult<StudentCourseScoreDto>> UpdateScore(StudentCourseScoreDto dto);
-      Task<GenericResult<StudentCourseScoreDto>> Insert(StudentCourseScoreDto dto);
+      Task<GenericResult<StudentCourseScoreDto>> InsertScore(StudentCourseScoreDto dto);
     }
 }

@@ -33,7 +33,7 @@ namespace StudentManagementSystem.BLL.Courses
         public async Task<GenericResult<StudentCourseScoreDto>> UpdateScore(StudentCourseScoreDto dto) =>
             await Put<GenericResult<StudentCourseScoreDto>, StudentCourseScoreDto>(_serviceInformations.CourseManagementService.BaseUrl + "/api/StudentCourseScore/Update", dto);
 
-        public async Task<GenericResult<StudentCourseScoreDto>> Insert(StudentCourseScoreDto dto) =>
+        public async Task<GenericResult<StudentCourseScoreDto>> InsertScore(StudentCourseScoreDto dto) =>
             await Post<GenericResult<StudentCourseScoreDto>, StudentCourseScoreDto>(_serviceInformations.CourseManagementService.BaseUrl + "/api/StudentCourseScore/Insert", dto);
 
     }
