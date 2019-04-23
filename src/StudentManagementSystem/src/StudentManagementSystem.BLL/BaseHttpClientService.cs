@@ -35,5 +35,32 @@ namespace StudentManagementSystem.BLL
             var result = Newtonsoft.Json.JsonConvert.DeserializeObject<TReturnType>(await endPointResult.Content.ReadAsStringAsync());
             return result;
         }
+        public async Task<TReturnType> Get<TReturnType>(string url) =>
+             await RequestEndPointAsync<TReturnType>(async (HttpClient client) =>
+             {
+                 return await client.GetAsync(url);
+             });
+
+        public async Task<TReturnType> Post<TReturnType, TPostValue>(string url, TPostValue postData) =>
+            await RequestEndPointAsync<TReturnType>(async (HttpClient client) =>
+            {
+                if (postData != null)
+                    return await client.PostAsync(url, new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(postData), System.Text.Encoding.UTF8, "application/json"));
+                else
+                    return await client.PostAsync(url, new StringContent(""));
+            });
+        public async Task<TReturnType> Put<TReturnType, TPutValue>(string url, TPutValue postData) =>
+           await RequestEndPointAsync<TReturnType>(async (HttpClient client) =>
+           {
+               if (postData != null)
+                   return await client.PutAsync(url, new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(postData), System.Text.Encoding.UTF8, "application/json"));
+               else
+                   return await client.PostAsync(url, new StringContent(""));
+           });
+        public async Task<TReturnType> Delete<TReturnType>(string url) =>
+          await RequestEndPointAsync<TReturnType>(async (HttpClient client) =>
+          {
+              return await client.DeleteAsync(url);
+          });
     }
 }

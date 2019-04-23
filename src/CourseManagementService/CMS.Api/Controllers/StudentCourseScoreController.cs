@@ -33,11 +33,5 @@ namespace CMS.Api.Controllers
                 return GenericResult<List<StudentCourseScoreListDto>>.UserSafeError("An error occurred");
             }
         }
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public override Task<ActionResult<GenericResult<StudentCourseScoreDto>>> Update(StudentCourseScoreDto entityDto)
-        {
-            throw new NotImplementedException("Update is not implemented. Use insert instead");
-            //return base.Update(entityDto);
-        }
     }
 }

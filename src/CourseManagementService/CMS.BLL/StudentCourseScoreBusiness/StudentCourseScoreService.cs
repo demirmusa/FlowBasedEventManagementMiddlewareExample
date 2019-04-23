@@ -3,8 +3,9 @@ using CMS.BLL.StudentCourseScoreBusiness.Dto;
 using CMS.DAL;
 using CMS.DAL.DbEntities;
 using EFCore.GenericRepository.GenericServices;
-using EFCore.GenericRepository.interfaces;
+using EFCore.GenericRepository.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,15 +35,13 @@ namespace CMS.BLL.StudentCourseScoreBusiness
             var entity = base._mapper.Map<StudentCourseScore>(entityDto);
 
             if (await base._genericRepo.AsQueryable().AnyAsync(x => x.FKStudentID == entity.FKStudentID && x.FKCourseID == entity.FKCourseID))
-            {
-                var existing = await base._genericRepo.AsQueryable().Where(x => x.FKStudentID == entity.FKStudentID && x.FKCourseID == entity.FKCourseID).ToListAsync();
-
-
-
-            }
-
+                await base._genericRepo.DeleteAsync(x => x.FKStudentID == entity.FKStudentID && x.FKCourseID == entity.FKCourseID);
 
             return await base.Insert(entityDto);
         }
+        //when we call update it will automaticaly audit it.(to same table. Other auditing options will be added)
+        public override async Task<StudentCourseScoreDto> Update(StudentCourseScoreDto entityDto)=>        
+             await Update(entityDto);
+        
     }
 }

@@ -28,23 +28,12 @@ namespace StudentManagementSystem.BLL.Population
             this._serviceInformations = serviceInformations.Value;
         }
         public async Task<GenericResult<int>> AddPopulationInfo(PopulationInformationDto informationDto) =>
-            await RequestGenericResultReturnsEndPointAsync<int>(async (HttpClient client) =>
-            {
-                return await client.PostAsync(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/AddNew",
-                                         new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(informationDto), System.Text.Encoding.UTF8, "application/json"));
-            });
-
+            await Post<GenericResult<int>, PopulationInformationDto>(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/AddNew", informationDto);
 
         public async Task<GenericResult<bool>> IsPopulationExists(int id) =>
-            await RequestGenericResultReturnsEndPointAsync<bool>(async (HttpClient client) =>
-            {
-                return await client.GetAsync(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/Exists/" + id);
-            });
+          await Get<GenericResult<bool>>(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/Exists/" + id);
 
         public async Task<GenericResult<bool>> Delete(int id) =>
-            await RequestGenericResultReturnsEndPointAsync<bool>(async (HttpClient client) =>
-             {
-                 return await client.DeleteAsync(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/Delete/" + id);
-             });
+          await Delete<GenericResult<bool>>(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/Delete/" + id);
     }
 }

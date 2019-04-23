@@ -2,7 +2,7 @@
 using CMS.DAL;
 using CMS.DAL.DbEntities;
 using EFCore.GenericRepository.GenericServices;
-using EFCore.GenericRepository.interfaces;
+using EFCore.GenericRepository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;

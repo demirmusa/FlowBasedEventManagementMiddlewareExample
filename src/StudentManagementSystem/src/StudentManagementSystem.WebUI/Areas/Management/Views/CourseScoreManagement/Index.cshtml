@@ -1,0 +1,68 @@
+﻿@model Example.CoreShareds.GenericResult<List<StudentManagementSystem.BLL.Courses.Dto.CourseInformationDto>>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-md-6">
+<div class="x_panel  col-md-12">
+    <div class="x_title">
+        <h2>Courses By Student</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Teacher ID</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Data)
+                    {
+                        <tr>
+                            <td>@item.CourseTitle</td>
+                            <td>@item.CourseDescription</td>
+                            <td>@item.FKTeacherID</td>
+                            <td><button class="btn btn-xs btn-success" type="button" onclick="LoadCourseScores(@item.ID,'@item.CourseTitle')"><i class="fa fa-hand-o-up"></i></button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</div>
+<div class="col-md-6">
+    <div class="x_panel col-md-12" style="display: none" id="courseScoreDivPanel">
+        <div class="x_title">
+            <h2>Course "<span id="courseScoreTitle"></span>"  Scores</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="col-md-12" id="courseScoreDiv">
+
+            </div>
+            <div class="clearfix"></div>
+            </div>
+    </div>
+    </div>
+
+
+
+    @section Scripts
+    {
+    <script>
+        function LoadCourseScores(id, title) {
+            $("#courseScoreDivPanel").show();
+            $("#courseScoreTitle").text(title);
+
+            $("#courseScoreDiv").empty().load("/Management/CourseScoreManagement/CourseScoresForStudent?courseId=" + id);
+        }
+    </script>
+    }

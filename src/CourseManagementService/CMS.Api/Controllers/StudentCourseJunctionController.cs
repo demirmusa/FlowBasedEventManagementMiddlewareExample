@@ -18,10 +18,10 @@ namespace CMS.Api.Controllers
     [ApiController]
     public class StudentCourseJunctionController : BaseServiceController<StudentCourseJunctionService, CourseServiceDbContext, StudentCourseJunction>
     {
-
         public StudentCourseJunctionController(StudentCourseJunctionService service) : base(service)
         {
         }
+        [HttpGet("{studentId}")]
         public async Task<GenericResult<List<CourseInformationDto>>> GetCoursesByStudentId(int studentId)
         {
             try

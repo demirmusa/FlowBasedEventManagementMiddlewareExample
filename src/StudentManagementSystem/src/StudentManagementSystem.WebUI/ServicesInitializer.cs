@@ -6,7 +6,6 @@ using StudentManagementSystem.BLL.People.Dto;
 using StudentManagementSystem.BLL.Population.Dto;
 using StudentManagementSystem.DAL.DbEntities;
 using AutoMapper.Mappers.Internal;
-using StudentManagementSystem.BLL.StudentBusiness;
 using StudentManagementSystem.BLL.UserBusiness.Dto;
 using StudentManagementSystem.BLL.StudentBusiness.Dto;
 
@@ -18,21 +17,24 @@ namespace StudentManagementSystem.WebUI
         {
             services.AddAutoMapper();
 
-            services.AddGenericRepositorySingleton();
+            services.AddGenericRepositoryScoped();
 
             services.AddScoped(typeof(ISMSDbContextGenericRepository<>), typeof(SMSDbContextGenericRepository<>));
 
             services.AddTransient<BLL.StudentSearch.interfaces.IStudentSearchService, BLL.StudentSearch.StudentSearchService>();
 
             services.AddTransient<BLL.UserBusiness.Interface.IUserService, BLL.UserBusiness.UserService>();
+
             services.AddTransient<BLL.People.Interfaces.IPeopleService, BLL.People.PeopleService>();
+
             services.AddTransient<BLL.Cipher.Interfaces.ICipherService, BLL.Cipher.CipherService>();
+
             services.AddTransient<BLL.Population.Interfaces.IPopulationService, BLL.Population.PopulationService>();
-            services.AddTransient<BLL.StudentBusiness.Interfaces.IStudentRegistrationService, StudentRegistrationService>();
 
+            services.AddTransient<BLL.StudentBusiness.Interfaces.IStudentRegistrationService, BLL.StudentBusiness.StudentRegistrationService>();
+
+            services.AddTransient<BLL.Courses.Interfaces.ICourseScoreManagementService, BLL.Courses.CourseScoreManagementService>();
         }
-
-      
     }
     public class AutoMapperProfiles : Profile
     {

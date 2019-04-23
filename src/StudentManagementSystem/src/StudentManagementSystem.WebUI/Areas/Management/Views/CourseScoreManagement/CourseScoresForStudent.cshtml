@@ -1,0 +1,38 @@
+﻿@using Example.CoreShareds
+@model Example.CoreShareds.GenericResult<List<StudentManagementSystem.BLL.Courses.Dto.StudentCourseScoreListDto>>
+@{
+    Layout = null;
+}
+
+
+@if (!Model.IsSucceed)
+{
+    <div>@Model.GetAllMessage()</div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Score</th>
+                <th>PreviousId</th>
+                <th>IsDeleted</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Data)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Score</td>
+                    <td>@item.FKPreviousVersionID</td>
+                    <td>@Html.Raw(item.Deleted ? "<span style='color:red'>YES</span>" : "NO")</td>
+                    <td><button class="btn btn-xs btn-success"><i class="fa fa-pencil"></i></button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

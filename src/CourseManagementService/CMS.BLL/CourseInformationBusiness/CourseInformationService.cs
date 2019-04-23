@@ -1,5 +1,5 @@
 ﻿using CMS.DAL;
-using EFCore.GenericRepository.interfaces;
+using EFCore.GenericRepository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;

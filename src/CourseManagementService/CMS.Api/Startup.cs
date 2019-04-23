@@ -9,6 +9,8 @@ using EFCore.GenericRepository;
 using CMS.BLL.CourseInformationBusiness;
 using Swashbuckle.AspNetCore.Swagger;
 using AutoMapper;
+using CMS.BLL.StudentCourseJunctionBusiness;
+using CMS.BLL.StudentCourseScoreBusiness;
 
 namespace CMS.Api
 {
@@ -30,6 +32,8 @@ namespace CMS.Api
             services.AddGenericRepositoryScoped();
 
             services.AddTransient<CourseInformationService>();
+            services.AddTransient<StudentCourseJunctionService>();
+            services.AddTransient<StudentCourseScoreService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
@@ -56,8 +60,7 @@ namespace CMS.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint($"{Configuration["AppSettings:VirtualDirectory"]}/swagger/v1/swagger.json", "My API");
-                    c.RoutePrefix = string.Empty;
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI V1");
                 });
             }
             else

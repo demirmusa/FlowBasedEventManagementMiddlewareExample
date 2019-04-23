@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EFCore.GenericRepository.GenericServices;
-using EFCore.GenericRepository.interfaces;
+using EFCore.GenericRepository.Interfaces;
 using Example.CoreShareds;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
