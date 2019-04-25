@@ -1,4 +1,5 @@
-﻿using CMS.DAL;
+﻿using System;
+using CMS.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using AutoMapper;
 using CMS.BLL.StudentCourseJunctionBusiness;
 using CMS.BLL.StudentCourseScoreBusiness;
+using EventManager.DefaultManager.Extensions;
 
 namespace CMS.Api
 {
@@ -29,6 +31,12 @@ namespace CMS.Api
             services.AddDbContext<CourseServiceDbContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("CourseManagementDefaultConnection")));
 
+
+            services.AddEMDefaultManager(opt =>
+            {
+                opt.CheckIsEventUnique = false;
+            });
+            //.UseSQLChecker(opt => opt.UseSqlServer(Configuration.GetConnectionString("EventDbConnectionString")));
             services.AddGenericRepositoryScoped();
 
             services.AddTransient<CourseInformationService>();
@@ -51,7 +59,7 @@ namespace CMS.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -68,7 +76,8 @@ namespace CMS.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-        
+            serviceProvider.InitializeEMDefaultManager("localhost");
+
             app.UseHttpsRedirection();
             app.UseMvc();
            

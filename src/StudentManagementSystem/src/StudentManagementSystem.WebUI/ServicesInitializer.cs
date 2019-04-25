@@ -34,6 +34,8 @@ namespace StudentManagementSystem.WebUI
             services.AddTransient<BLL.StudentBusiness.Interfaces.IStudentRegistrationService, BLL.StudentBusiness.StudentRegistrationService>();
 
             services.AddTransient<BLL.Courses.Interfaces.ICourseScoreManagementService, BLL.Courses.CourseScoreManagementService>();
+
+            services.AddTransient<BLL.Courses.Interfaces.ICourseManagementService, BLL.Courses.CourseManagementService>();
         }
     }
     public class AutoMapperProfiles : Profile

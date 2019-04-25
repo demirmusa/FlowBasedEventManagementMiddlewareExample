@@ -1,0 +1,55 @@
+﻿@model Example.CoreShareds.GenericResult<StudentManagementSystem.BLL.Courses.Dto.CourseInformationDto>
+
+
+@{
+    Layout = null;
+}
+<form  asp-area="Management" asp-controller="CourseManagement" asp-action="AddOrUpdateCourse" asp-antiforgery="true" id="newCourseForm">
+    @Html.HiddenFor(x=>x.Data.ID)
+ 
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-sm-4">
+                Course Title <span class="required">*</span>
+            </label>
+            <div class="col-sm-8">
+                <input asp-for="Data.CourseTitle" required="required" class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-4">
+                Course Description <span class="required">*</span>
+            </label>
+            <div class="col-sm-8">
+                <input asp-for="Data.CourseDescription" required="required" class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-4">
+                Teacher ID(it will be selectable) <span class="required">*</span>
+            </label>
+            <div class="col-sm-8">
+                <input asp-for="Data.FKTeacherID" required="required" class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+    </div>
+            <div class="clearfix"></div>
+            <button class="btn btn-success pull-right" type="submit">Submit</button>
+    <div class="clearfix"></div>
+    
+</form>
+<script>
+    $(function() {
+        // bind 'myForm' and provide a simple callback function
+        $('#newCourseForm').ajaxForm(function (result) {
+            $('#newCourseForm').unblock();
+            sms.toastGenericResult(result);
+            ListAllCourses();
+        });
+        $('#newCourseForm').submit(function() {
+            $(this).block();
+        });
+    });
+</script>

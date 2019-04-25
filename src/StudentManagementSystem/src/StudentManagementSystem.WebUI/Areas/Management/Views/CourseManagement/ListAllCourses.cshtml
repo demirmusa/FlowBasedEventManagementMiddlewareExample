@@ -1,0 +1,34 @@
+﻿@using Example.CoreShareds
+@model Example.CoreShareds.GenericResult<List<StudentManagementSystem.BLL.Courses.Dto.CourseInformationDto>>
+@{
+    Layout = null;
+}
+@if (!Model.IsSucceed)
+{
+    <div class="alert alert-danger">@Model.GetAllMessage()</div>
+}
+else
+{
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>FKTeacherID</th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var courseInformationDto in Model.Data)
+        {
+            <tr>
+                <td>@courseInformationDto.CourseTitle</td>
+                <td>@courseInformationDto.CourseDescription</td>
+                <td>@courseInformationDto.FKTeacherID</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" type="button" onclick="OpenUpdateCourseInformation(@courseInformationDto.ID, '@courseInformationDto.CourseTitle')"><i class="fa fa-pencil"></i></button>
+                    <button class="btn btn-sm btn-danger pull-right" type="button" onclick="DeleteCourse(@courseInformationDto.ID, '@courseInformationDto.CourseTitle')"><i class="fa fa-eraser"></i></button>
+                </td>
+            </tr>
+        }
+    </table>
+}

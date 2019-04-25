@@ -1,10 +1,10 @@
-﻿using EventManager.Core;
-using EventManager.Shared.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using EventManager.Core;
+using EventManager.Shared.Interfaces;
 
-namespace StudentManagementSystem.BLL.StudentBusiness.Dto
+namespace StudentManagementSystem.BLL.EMEvents
 {
     [EMEventInfo(eventName: "NewStudentCreatedEvent")]
     public class NewStudentCreatedEvent : IEMEvent

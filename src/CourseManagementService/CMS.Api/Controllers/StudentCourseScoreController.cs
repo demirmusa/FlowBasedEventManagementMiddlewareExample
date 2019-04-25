@@ -36,16 +36,8 @@ namespace CMS.Api.Controllers
 
         public override async Task<ActionResult<GenericResult<StudentCourseScoreDto>>> Insert(StudentCourseScoreDto entityDto)
         {
-            try
-            {
-                var result = await _service.Insert(entityDto);
-                return GenericResult<StudentCourseScoreDto>.Success(result);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            var result = await _service.Insert(entityDto);
+            return GenericResult<StudentCourseScoreDto>.Success(result);
         }
     }
 }

@@ -21,19 +21,15 @@ namespace StudentManagementSystem.BLL.Population
             IOptions<ServiceInformations> serviceInformations
             ) : base(httpClientFactory)
         {
-
-            if (serviceInformations.Value == null)
-                throw new Exception("Define service informations in appsettings.json");
-
-            this._serviceInformations = serviceInformations.Value;
+            this._serviceInformations = serviceInformations.Value ?? throw new Exception("Define service informations in appsettings.json");
         }
         public async Task<GenericResult<int>> AddPopulationInfo(PopulationInformationDto informationDto) =>
-            await Post<GenericResult<int>, PopulationInformationDto>(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/AddNew", informationDto);
+            await PostG<int, PopulationInformationDto>(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/AddNew", informationDto);
 
         public async Task<GenericResult<bool>> IsPopulationExists(int id) =>
-          await Get<GenericResult<bool>>(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/Exists/" + id);
+          await GetG<bool>(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/Exists/" + id);
 
         public async Task<GenericResult<bool>> Delete(int id) =>
-          await Delete<GenericResult<bool>>(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/Delete/" + id);
+          await DeleteG<bool>(_serviceInformations.PopulationInformationService.BaseUrl + "/api/PopulationInformation/Delete/" + id);
     }
 }

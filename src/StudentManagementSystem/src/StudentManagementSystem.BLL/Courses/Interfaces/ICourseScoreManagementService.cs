@@ -9,11 +9,8 @@ namespace StudentManagementSystem.BLL.Courses.Interfaces
 {
     public interface ICourseScoreManagementService
     {
-      Task<GenericResult<List<CourseInformationDto>>> GetCoursesByStudentId(int studentId);
-      Task<GenericResult<List<StudentCourseScoreListDto>>> GetScoresByCourseAndStudentId(int studentId, int courseId);
-
-
-      Task<GenericResult<StudentCourseScoreDto>> UpdateScore(StudentCourseScoreDto dto);
-      Task<GenericResult<StudentCourseScoreDto>> InsertScore(StudentCourseScoreDto dto);
+        Task<GenericResult<List<CourseInformationDto>>> GetCoursesByStudentId(int studentId);
+        Task<GenericResult<List<StudentCourseScoreListDto>>> GetScoresByCourseAndStudentId(int studentId, int courseId);
+        Task<GenericResult<StudentCourseScoreDto>> InsertScore(StudentCourseScoreDto dto);
     }
 }

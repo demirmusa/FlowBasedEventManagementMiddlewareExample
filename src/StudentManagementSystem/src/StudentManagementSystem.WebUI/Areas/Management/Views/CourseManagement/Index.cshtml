@@ -1,0 +1,75 @@
+﻿@using Example.CoreShareds
+@model Example.CoreShareds.GenericResult<System.Collections.Generic.List<StudentManagementSystem.BLL.Courses.Dto.CourseInformationDto>>
+
+
+@if (!Model.IsSucceed)
+{
+<div class="alert alert-danger">@Model.GetAllMessage()</div>
+}
+else
+{
+<div class="col-sm-6">
+    <div class="x_panel col-xs-12">
+        <div class="x_title">
+            <h2>All Opened Courses</h2>
+            <div class="nav navbar-right panel_toolbox">
+                <button class="btn btn-primary" onclick="OpenAddNew()">Add New</button>
+                <button class="btn btn-primary" onclick="ListAllCourses()"><i class="fa fa-refresh"></i></button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="col-md-12" id="allCoursesDiv">
+                @(await Html.PartialAsync("ListAllCourses", Model))
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-6">
+    <div class="x_panel col-xs-12" id="panelAddOrUpdate" style="display: none">
+        <div class="x_title">
+            <h2 id="addOrUpdateDivTitle"></h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="col-md-12" id="addOrUpdateBody">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+}
+@section Scripts
+{
+    <script>
+        function ListAllCourses() {
+            $("#allCoursesDiv").empty().load("@Url.Action("ListAllCourses")");
+            $("#panelAddOrUpdate").hide();
+            $("#addOrUpdateBody").empty();
+        }
+
+        function OpenUpdateCourseInformation(id, title) {
+            $("#panelAddOrUpdate").show();
+            $("#addOrUpdateBody").empty().load("@Url.Action("AddOrUpdateCourse")?id=" + id);
+            $("#addOrUpdateDivTitle").text("Update \"" + title + "\"");
+        }
+
+        function OpenAddNew() {
+            $("#panelAddOrUpdate").show();
+            $("#addOrUpdateBody").empty().load("@Url.Action("AddOrUpdateCourse")");
+            $("#addOrUpdateDivTitle").text("Add New Course");
+        }
+
+        function DeleteCourse(id, title) {
+            if (confirm("Are You Score? <br/> Do you want to delete course: " + title)) {
+                debugger;
+                $.get("@Url.Action("Delete")?id=" + id,
+                    function(data) {
+                        sms.toastGenericResult(data);
+                        ListAllCourses();
+                    });
+            }
+        }
+    </script>
+}

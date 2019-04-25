@@ -47,15 +47,22 @@
     <div class="menu_section">
         <ul class="nav side-menu">
             <li><a href="/"><i class="fa fa-laptop"></i>Home</a></li>
-            <li><a href="/StudentDashboard"><i class="fa fa-laptop"></i>DashBoard</a></li>
+            <li><a href="@Url.Action("Index","StudentRegistration",new{Area="Management"})"><i class="fa fa-user"></i>Student Registration</a></li>
             <li>
-                <a><i class="fa fa-sitemap"></i> Management <span class="fa fa-chevron-down"></span></a>
+                <a><i class="fa fa-sitemap"></i>Course Management <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="/Management/StudentRegistration">Student Registration</a>
-                    <li><a href="/Management/CourseScoreManagement">Course Score Management</a>
+                    <li><a href="@Url.Action("Index","CourseManagement",new{Area="Management"})">Course Management</a></li>
                 </ul>
             </li>
+            <li>
+                <a><i class="fa fa-sitemap"></i>Student Management <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="@Url.Action("Index","CourseScoreManagement",new{Area="Management"})">Course Score Management</a></li>
+                </ul>
+            </li>
+
         </ul>
+
     </div>
 </div>
 

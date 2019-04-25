@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StudentManagementSystem.DAL\StudentManagementSystem.DAL.csproj" />
-    <ProjectReference Include="..\StudentManagementSystem.EMEvents\StudentManagementSystem.EMEvents.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -11,6 +11,7 @@ using StudentManagementSystem.DAL.DbEntities;
 using System;
 using System.Threading.Tasks;
 using System.Transactions;
+using StudentManagementSystem.BLL.EMEvents;
 
 namespace StudentManagementSystem.BLL.StudentBusiness
 {
