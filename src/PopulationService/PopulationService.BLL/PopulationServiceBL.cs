@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using EFCore.GenericRepository.interfaces;
+using EFCore.GenericRepository.Interfaces;
 using PopulationService.DAL;
 using AutoMapper;
 using PopulationService.BLL.Dto;

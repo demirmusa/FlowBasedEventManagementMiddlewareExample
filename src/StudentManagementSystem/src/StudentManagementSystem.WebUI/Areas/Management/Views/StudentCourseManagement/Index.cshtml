@@ -1,0 +1,94 @@
+﻿@using Example.CoreShareds
+@model Example.CoreShareds.GenericResult<System.Collections.Generic.List<StudentManagementSystem.BLL.Courses.Dto.CourseInformationDto>>
+
+
+@if (!Model.IsSucceed)
+{
+    <div class="alert alert-danger">@Model.GetAllMessage()</div>
+}
+else
+{
+    <div class="col-sm-6">
+        <div class="x_panel col-xs-12">
+            <div class="x_title">
+                <h2>All Opened Courses</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-12" id="allCoursesDiv">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>FKTeacherID</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        @foreach (var courseInformationDto in Model.Data)
+                        {
+                            <tr>
+                                <td>@courseInformationDto.CourseTitle</td>
+                                <td>@courseInformationDto.CourseDescription</td>
+                                <td>@courseInformationDto.FKTeacherID</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" type="button" onclick="SelectCourse(@courseInformationDto.ID, '@courseInformationDto.CourseTitle')"><i class="fa fa fa-hand-o-up"></i></button>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="x_panel col-xs-12">
+            <div class="x_title">
+                <h2>Kurs Seçiniz</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-12">
+                    <form asp-action="AddCourseToStudent">
+                        @Html.Hidden("courseId")
+                        <div class="form-group row">
+                            <label class="control-label col-md-3 col-sm-3">
+                                Selected Student :
+                            </label>
+                            <div class="col-md-6 col-sm-6">
+                                <span>@ViewBag.StudentName</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-3 col-sm-3">
+                               Selected Course :
+                            </label>
+                            <div class="col-md-6 col-sm-6">
+                                <span id="selectedCourseName">Select a course</span>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12" style="margin-top:20px">
+                            <button type="submit" class="btn btn-success">Add Student To Selected Course</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts
+{
+    <script>
+        function SelectCourse(id, name) {
+            $("#selectedCourseName").text(name);
+            $("#courseId").val(id);
+        }
+
+
+    </script>
+}

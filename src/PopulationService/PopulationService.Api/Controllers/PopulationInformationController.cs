@@ -38,5 +38,6 @@ namespace PopulationService.Api.Controllers
             var result = await _populationService.IsPopulationExists(id);
             return result.GetUserSafeResult();
         }
+
     }
 }

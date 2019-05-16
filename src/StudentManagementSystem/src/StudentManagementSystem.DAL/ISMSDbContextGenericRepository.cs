@@ -1,5 +1,5 @@
 ﻿using EFCore.GenericRepository;
-using EFCore.GenericRepository.interfaces;
+using EFCore.GenericRepository.Interfaces;
 using StudentManagementSystem.DAL;
 
 namespace StudentManagementSystem.BLL

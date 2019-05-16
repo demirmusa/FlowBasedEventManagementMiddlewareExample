@@ -11,5 +11,6 @@ namespace StudentManagementSystem.BLL.StudentSearch.interfaces
     {
         Task<GenericResult<List<(int id, string name,string foto, string studentNumber)>>> SearchStudent(string query);
         Task<GenericResult<StudentSearchResultDto>> GetStudentInformationById(int id);
+        Task<GenericResult<List<(int id, string name, string foto, string studentNumber)>>> GetAllStudents();
     }
 }

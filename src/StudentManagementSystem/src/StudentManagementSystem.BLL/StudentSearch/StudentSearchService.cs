@@ -68,5 +68,22 @@ namespace StudentManagementSystem.BLL.StudentSearch
             }
 
         }
+
+        public async Task<GenericResult<List<(int id, string name, string foto, string studentNumber)>>> GetAllStudents()
+        {
+            try
+            {
+                var students = await _studentInformationRepo.AsQueryable()
+                    .OrderByDescending(x => x.ID).ThenBy(x => x.StudentNumber)
+                    .Select(x => new { x.ID, Name = x.User.Person.Name + " " + x.User.Person.Surname, x.User.Person.PhotoUrl, x.StudentNumber })
+                    .ToListAsync();
+
+                return GenericResult<List<(int id, string name, string foto, string studentNumber)>>.Success(students.Select(x => (x.ID, x.Name, x.PhotoUrl, x.StudentNumber)).ToList());
+            }
+            catch (Exception e)
+            {
+                return GenericResult<List<(int id, string name, string foto, string studentNumber)>>.Error(null, e);
+            }
+        }
     }
 }

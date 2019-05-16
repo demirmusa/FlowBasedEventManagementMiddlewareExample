@@ -11,7 +11,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="EFCore.GenericRepository" Version="1.1.1" />
+    <PackageReference Include="EFCore.GenericRepository" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -27,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="EFCore.GenericRepository">
+      <HintPath>..\..\DllReferences\EFCore.GenericRepository.dll</HintPath>
+    </Reference>
     <Reference Include="EventManager.Core">
       <HintPath>..\..\DllReferences\EventManager.Core.dll</HintPath>
     </Reference>

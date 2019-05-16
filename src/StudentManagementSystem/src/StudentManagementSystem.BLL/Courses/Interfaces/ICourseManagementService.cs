@@ -14,5 +14,6 @@ namespace StudentManagementSystem.BLL.Courses.Interfaces
         Task<GenericResult<CourseInformationDto>> UpdateCourse(CourseInformationDto dto);
         Task<GenericResult<CourseInformationDto>> InsertCourse(CourseInformationDto dto);
         Task<GenericResult<CourseInformationDto>> DeleteCourse(int id);
+        Task<GenericResult<StudentCourseJunctionDto>> AddCourseToStudent(int studentId, int courseId);
     }
 }

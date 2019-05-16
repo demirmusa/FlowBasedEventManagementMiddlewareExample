@@ -11,6 +11,7 @@ using PopulationService.BLL;
 using PopulationService.DAL;
 using AutoMapper;
 using EFCore.GenericRepository;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace PopulationService.Api
 {
@@ -33,7 +34,17 @@ namespace PopulationService.Api
             services.AddTransient<IPopulationService, PopulationServiceBL>();
 
             services.AddGenericRepositoryScoped();
-
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info()
+                {
+                    Version = "v1",
+                    Title = "Population Management Api",
+                    Description = "Population Management Api",
+                    TermsOfService = "None",
+                    Contact = new Contact() { Name = "Musa Demir", Email = "demirmusa96@gmail.com" }
+                });
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -49,7 +60,11 @@ namespace PopulationService.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI V1");
+            });
             app.UseHttpsRedirection();
             app.UseMvc();
         }

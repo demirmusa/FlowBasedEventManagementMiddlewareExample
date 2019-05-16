@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="8.0.0" />
-    <PackageReference Include="EFCore.GenericRepository" Version="1.0.5" />
+    <PackageReference Include="AutoMapper" Version="8.1.0" />
+    <PackageReference Include="EFCore.GenericRepository" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>

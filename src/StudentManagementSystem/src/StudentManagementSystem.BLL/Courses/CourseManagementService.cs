@@ -34,5 +34,11 @@ namespace StudentManagementSystem.BLL.Courses
 
         public async Task<GenericResult<CourseInformationDto>> DeleteCourse(int id) =>
             await DeleteG<CourseInformationDto>(_serviceInformations.CourseManagementService.BaseUrl + "/api/CourseInformation/Delete/" + id);
+
+        public async Task<GenericResult<StudentCourseJunctionDto>> AddCourseToStudent(int studentId,int courseId) =>
+            await PostG<StudentCourseJunctionDto, StudentCourseJunctionDto>(
+                _serviceInformations.CourseManagementService.BaseUrl + "/api/StudentCourseJunction/Insert" ,
+                new StudentCourseJunctionDto { FKCourseID = courseId,FKStudentID = studentId});
+
     }
 }
